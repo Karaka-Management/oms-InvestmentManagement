@@ -14,25 +14,31 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Models;
 
-use phpOMS\Localization\BaseStringL11n;
+use phpOMS\Business\Finance\DepreciationType;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
- * Money type (one off cost, recurring, earnings).
+ * Costs/Earnings.
  *
  * @package Modules\InvestmentManagement\Models
  * @license OMS License 2.0
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-class MoneyType
+class AmountGroup
 {
     public int $id = 0;
 
     public string $name = '';
 
-    public BaseStringL11n $content;
+    public array $amounts = [];
 
-    public bool $cost = true;
+    public BaseStringL11nType $type;
 
-    public bool $recurring = false;
+    public int $option = 0;
+
+    public function __construct()
+    {
+        $this->type = new BaseStringL11nType();
+    }
 }

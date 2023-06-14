@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\InvestmentManagement\Models;
 
 use Modules\Admin\Models\Account;
+use Modules\Admin\Models\NullAccount;
 use phpOMS\Business\Finance\DepreciationType;
 
 /**
@@ -31,9 +32,13 @@ class Investment
 
     public string $name = '';
 
-    public int $depreciationType = DepreciationType::STAIGHT_LINE;
+    public string $description = '';
 
-    public array $objects = [];
+    public int $depreciationType = DepreciationType::NONE;
+
+    public int $status = InvestmentStatus::DRAFT;
+
+    public array $options = [];
 
     /**
      * Income
@@ -42,5 +47,27 @@ class Investment
 
     public Account $createdBy;
 
+    public \DateTimeImmutable $createdAt;
+
+    public \DateTime $performanceDate;
+
     public array $attributeTypes = [];
+
+    public ?int $unit = null;
+
+    /**
+     * Constructor.
+     * 
+     * @since 1.0.0
+     */
+    public __construct()
+    {
+        $this->createdBy = new NullAccount();
+        $this->createdAt = new \DateTimeImmutable('now');
+        $this->perforamnceDate = new \DateTime('now');
+    }
+
+    use \Modules\Media\Models\MediaListTrait;
+    use \Modules\Editor\Models\EditorDocListTrait;
+    use \Modules\Attribute\Models\AttributeHolderTrait;
 }

@@ -18,7 +18,8 @@
     "directory": "InvestmentManagement",
     "dependencies": {
         "Finance": "*",
-        "SupplierManagement": "*"
+        "SupplierManagement": "*",
+        "ItemManagement": "*"
     },
     "providing": {
         "Navigation": "*"

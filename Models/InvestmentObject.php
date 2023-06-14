@@ -26,7 +26,7 @@ class InvestmentObject
 {
     public int $id = 0;
 
-    public string $productName = '';
+    public string $name = '';
 
     public string $description = '';
 
@@ -34,14 +34,23 @@ class InvestmentObject
 
     public string $supplierName = '';
 
-    public string $productLink = '';
+    public string $link = '';
 
     /**
      * Costs / Revenue
      */
-    public array $money = [];
+    public array $amountGroups = [];
 
     public bool $approved = false;
 
     public array $attributes = [];
+
+    public ?int $parent = null;
+
+    public int $investment = 0;
+
+    public ?int $item = null;
+
+    use \Modules\Media\Models\MediaListTrait;
+    use \Modules\Editor\Models\EditorDocListTrait;
 }

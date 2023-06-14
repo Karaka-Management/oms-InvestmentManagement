@@ -25,21 +25,20 @@ use phpOMS\Stdlib\Base\FloatInt;
  * @link    https://orange-management.org
  * @since   1.0.0
  */
-class Money
+class Amount
 {
     public int $id = 0;
 
     public string $name = '';
 
-    public int $depreciationType = DepreciationType::STAIGHT_LINE;
-
-    public int $depreciationDuration = 0;
-
     public FloatInt $amount;
 
-    public FloatInt $residualValue;
+    public int $group = 0;
 
-    public MoneyType $moneyType;
+    public ?\DateTime $date = null;
 
-    public bool $recurring = false;
+    public function __construct()
+    {
+        $this->amount = new FloatInt();
+    }
 }

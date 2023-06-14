@@ -36,7 +36,7 @@
         "type": 2,
         "subtype": 1,
         "name": "PurchaseInquiries",
-        "uri": "{/base}/private/investment?{?}",
+        "uri": "{/prefix}/private/investment?{?}",
         "target": "self",
         "icon": null,
         "order": 10,

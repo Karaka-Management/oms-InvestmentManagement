@@ -1,0 +1,30 @@
+[
+    {
+		"name": "earnings",
+		"l11n": {
+			"en": "Earnings",
+			"de": "Erlöse"
+		}
+	},
+	{
+		"name": "costs",
+		"l11n": {
+			"en": "Costs",
+			"de": "Kosten"
+		}
+	},
+	{
+		"name": "cashflow",
+		"l11n": {
+			"en": "Cashflow",
+			"de": "Cashflow"
+		}
+	},
+	{
+		"name": "depreciation",
+		"l11n": {
+			"en": "Depreciation",
+			"de": "Abschreibung"
+		}
+	}
+]
