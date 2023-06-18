@@ -4,7 +4,7 @@
  *
  * PHP Version 8.1
  *
- * @package   Modules\FleetManagement
+ * @package   Modules\InvestmentManagement
  * @copyright Dennis Eichhorn
  * @license   OMS License 2.0
  * @version   1.0.0
@@ -12,20 +12,20 @@
  */
 declare(strict_types=1);
 
-namespace Modules\FleetManagement\Controller;
+namespace Modules\InvestmentManagement\Controller;
 
 use Modules\Admin\Models\NullAccount;
-use Modules\FleetManagement\Models\Amount;
-use Modules\FleetManagement\Models\AmountGroup;
-use Modules\FleetManagement\Models\AmountTypeL11nMapper;
-use Modules\FleetManagement\Models\AmountTypeMapper;
-use Modules\FleetManagement\Models\Investment;
-use Modules\FleetManagement\Models\InvestmentObject;
-use Modules\FleetManagement\Models\InvestmentObjectMapper;
-use Modules\FleetManagement\Models\InvestmentMapper;
-use Modules\FleetManagement\Models\InvestmentStatus;
-use Modules\FleetManagement\Models\InvestmentTypeL11nMapper;
-use Modules\FleetManagement\Models\InvestmentTypeMapper;
+use Modules\InvestmentManagement\Models\Amount;
+use Modules\InvestmentManagement\Models\AmountGroup;
+use Modules\InvestmentManagement\Models\AmountTypeL11nMapper;
+use Modules\InvestmentManagement\Models\AmountTypeMapper;
+use Modules\InvestmentManagement\Models\Investment;
+use Modules\InvestmentManagement\Models\InvestmentObject;
+use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
+use Modules\InvestmentManagement\Models\InvestmentMapper;
+use Modules\InvestmentManagement\Models\InvestmentStatus;
+use Modules\InvestmentManagement\Models\InvestmentTypeL11nMapper;
+use Modules\InvestmentManagement\Models\InvestmentTypeMapper;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\Media\Models\NullMedia;
@@ -44,9 +44,9 @@ use phpOMS\Model\Message\FormValidation;
 use phpOMS\Stdlib\Base\FloatInt;
 
 /**
- * FleetManagement class.
+ * InvestmentManagement class.
  *
- * @package Modules\FleetManagement
+ * @package Modules\InvestmentManagement
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
@@ -111,6 +111,7 @@ final class ApiInvestmentController extends Controller
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->unit     = $request->getDataInt('unit') ?? $this->app->unitId;
         $investment->createdBy = new NullAccount($request->header->account);
+        $investment->performanceDate = $request->getDataDateTime('performance') ?? $investment->createdAt;
 
         return $investment;
     }
@@ -250,7 +251,7 @@ final class ApiInvestmentController extends Controller
             return;
         }
 
-        /** @var \Modules\FleetManagement\Models\Investment $investment */
+        /** @var \Modules\InvestmentManagement\Models\Investment $investment */
         $investment = InvestmentMapper::get()->where('id', (int) $request->getData('investment'))->execute();
         $path    = $this->createInvestmentDir($investment);
 
@@ -432,7 +433,7 @@ final class ApiInvestmentController extends Controller
             return;
         }
 
-        /** @var InvestmentOption $investment */
+        /** @var InvestmentObject $investment */
         $investment = $this->createInvestmentOptionFromRequest($request);
         $this->createModel($request->header->account, $investment, InvestmentObjectMapper::class, 'investment_option', $request->getOrigin());
 
@@ -493,7 +494,6 @@ final class ApiInvestmentController extends Controller
         $investment->supplier     = $request->getDataInt('supplier') ?? 0;
         $investment->supplierName     = $request->getDataString('supplierName') ?? '';
         $investment->item     = $request->getDataInt('item');
-        $investment->performanceDate = $request->getDataDateTime('performance') ?? $investment->createdAt;
 
         // @todo: reconsider the following lines. This seems rather complicated.
         if ($request->hasData('amount')) {
@@ -706,14 +706,14 @@ final class ApiInvestmentController extends Controller
      */
     public function apiMediaAddToInvestmentObject(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
-        if (!empty($val = $this->validateMediaAddToInvestment($request))) {
+        if (!empty($val = $this->validateMediaAddToInvestmentObject($request))) {
             $response->data[$request->uri->__toString()] = new FormValidation($val);
             $response->header->status                    = RequestStatusCode::R_400;
 
             return;
         }
 
-        /** @var \Modules\FleetManagement\Models\InvestmentObject $investment */
+        /** @var \Modules\InvestmentManagement\Models\InvestmentObject $investment */
         $investment = InvestmentObjectMapper::get()->where('id', (int) $request->getData('option'))->execute();
         $path    = $this->createInvestmentObjectDir($investment);
 
@@ -809,7 +809,7 @@ final class ApiInvestmentController extends Controller
      *
      * @since 1.0.0
      */
-    private function validateMediaAddToInvestment(RequestAbstract $request) : array
+    private function validateMediaAddToInvestmentObject(RequestAbstract $request) : array
     {
         $val = [];
         if (($val['media'] = (!$request->hasData('media') && empty($request->files)))
@@ -951,7 +951,7 @@ final class ApiInvestmentController extends Controller
             return;
         }
 
-        $request->setData('virtualpath', '/Modules/FleetManagement/Investment/' . $request->getData('id'), true);
+        $request->setData('virtualpath', '/Modules/InvestmentManagement/Investment/' . $request->getData('id'), true);
         $this->app->moduleManager->get('Editor', 'Api')->apiEditorCreate($request, $response, $data);
 
         if ($response->header->status !== RequestStatusCode::R_200) {
