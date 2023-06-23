@@ -24,8 +24,6 @@ use Modules\InvestmentManagement\Models\InvestmentObject;
 use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
 use Modules\InvestmentManagement\Models\InvestmentMapper;
 use Modules\InvestmentManagement\Models\InvestmentStatus;
-use Modules\InvestmentManagement\Models\InvestmentTypeL11nMapper;
-use Modules\InvestmentManagement\Models\InvestmentTypeMapper;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\Media\Models\NullMedia;
@@ -51,7 +49,7 @@ use phpOMS\Stdlib\Base\FloatInt;
  * @link    https://jingga.app
  * @since   1.0.0
  */
-final class ApiInvestmentController extends Controller
+final class ApiController extends Controller
 {
     /**
      * Api method to create a investment
@@ -109,9 +107,12 @@ final class ApiInvestmentController extends Controller
         $investment           = new Investment();
         $investment->name     = $request->getDataString('name') ?? '';
         $investment->description     = $request->getDataString('description') ?? '';
+        $investment->status     = (int) ($request->getDataInt('status') ?? InvestmentStatus::DRAFT);
+        $investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
+        $investment->description     = $request->getDataString('description') ?? '';
         $investment->unit     = $request->getDataInt('unit') ?? $this->app->unitId;
         $investment->createdBy = new NullAccount($request->header->account);
-        $investment->performanceDate = $request->getDataDateTime('performance') ?? $investment->createdAt;
+        $investment->performanceDate = $request->getDataDateTime('performance') ?? new \DateTime($investment->createdAt->format('Y-m-d H:i:s'));
 
         return $investment;
     }
@@ -491,7 +492,7 @@ final class ApiInvestmentController extends Controller
         $investment->link     = $request->getDataString('link') ?? '';
         $investment->investment     = (int) $request->getData('investment');
         $investment->parent     = $request->getDataInt('parent');
-        $investment->supplier     = $request->getDataInt('supplier') ?? 0;
+        $investment->supplier     = $request->getDataInt('supplier');
         $investment->supplierName     = $request->getDataString('supplierName') ?? '';
         $investment->item     = $request->getDataInt('item');
 

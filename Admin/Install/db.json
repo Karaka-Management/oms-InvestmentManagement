@@ -1,4 +1,52 @@
 {
+    "investmgmt_investment_type": {
+        "name": "investmgmt_investment_type",
+        "fields": {
+            "investmgmt_investment_type_id": {
+                "name": "investmgmt_investment_type_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_investment_type_name": {
+                "name": "investmgmt_investment_type_name",
+                "type": "VARCHAR(255)",
+                "null": false
+            }
+        }
+    },
+    "investmgmt_investment_type_l11n": {
+        "name": "investmgmt_investment_type_l11n",
+        "fields": {
+            "investmgmt_investment_type_l11n_id": {
+                "name": "investmgmt_investment_type_l11n_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_investment_type_l11n_title": {
+                "name": "investmgmt_investment_type_l11n_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "investmgmt_investment_type_l11n_type": {
+                "name": "investmgmt_investment_type_l11n_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_investment_type",
+                "foreignKey": "investmgmt_investment_type_id"
+            },
+            "investmgmt_investment_type_l11n_lang": {
+                "name": "investmgmt_investment_type_l11n_lang",
+                "type": "VARCHAR(2)",
+                "null": false,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            }
+        }
+    },
     "investmgmt_investment": {
         "name": "investmgmt_investment",
         "fields": {
@@ -23,6 +71,12 @@
                 "name": "investmgmt_investment_status",
                 "type": "TINYINT",
                 "null": false
+            },
+            "investmgmt_investment_type": {
+                "name": "investmgmt_investment_type",
+                "type": "INT",
+                "foreignTable": "investmgmt_investment_type",
+                "foreignKey": "investmgmt_investment_type_id"
             },
             "investmgmt_investment_depreciation_type": {
                 "name": "investmgmt_investment_depreciation_type",
@@ -56,25 +110,25 @@
             }
         }
     },
-    "investmgmt_investmen_media": {
-        "name": "investmgmt_investmen_media",
+    "investmgmt_investment_media": {
+        "name": "investmgmt_investment_media",
         "fields": {
-            "investmgmt_investmen_media_id": {
-                "name": "investmgmt_investmen_media_id",
+            "investmgmt_investment_media_id": {
+                "name": "investmgmt_investment_media_id",
                 "type": "INT",
                 "null": false,
                 "primary": true,
                 "autoincrement": true
             },
-            "investmgmt_investmen_media_investment": {
-                "name": "investmgmt_investmen_media_investment",
+            "investmgmt_investment_media_investment": {
+                "name": "investmgmt_investment_media_investment",
                 "type": "INT",
                 "null": false,
-                "foreignTable": "investmgmt_investmen",
-                "foreignKey": "investmgmt_investmen_id"
+                "foreignTable": "investmgmt_investment",
+                "foreignKey": "investmgmt_investment_id"
             },
-            "investmgmt_investmen_media_media": {
-                "name": "investmgmt_investmen_media_media",
+            "investmgmt_investment_media_media": {
+                "name": "investmgmt_investment_media_media",
                 "type": "INT",
                 "null": false,
                 "foreignTable": "media",
@@ -82,25 +136,25 @@
             }
         }
     },
-    "investmgmt_investmen_note": {
-        "name": "investmgmt_investmen_note",
+    "investmgmt_investment_note": {
+        "name": "investmgmt_investment_note",
         "fields": {
-            "investmgmt_investmen_note_id": {
-                "name": "investmgmt_investmen_note_id",
+            "investmgmt_investment_note_id": {
+                "name": "investmgmt_investment_note_id",
                 "type": "INT",
                 "null": false,
                 "primary": true,
                 "autoincrement": true
             },
-            "investmgmt_investmen_note_investment": {
-                "name": "investmgmt_investmen_note_investment",
+            "investmgmt_investment_note_investment": {
+                "name": "investmgmt_investment_note_investment",
                 "type": "INT",
                 "null": false,
-                "foreignTable": "investmgmt_investmen",
-                "foreignKey": "investmgmt_investmen_id"
+                "foreignTable": "investmgmt_investment",
+                "foreignKey": "investmgmt_investment_id"
             },
-            "investmgmt_investmen_note_doc": {
-                "name": "investmgmt_investmen_note_doc",
+            "investmgmt_investment_note_doc": {
+                "name": "investmgmt_investment_note_doc",
                 "type": "INT",
                 "null": false,
                 "foreignTable": "editor_doc",
@@ -173,7 +227,7 @@
                 "default": null,
                 "foreignTable": "investmgmt_option",
                 "foreignKey": "investmgmt_option_id"
-            },
+            }
         }
     },
     "investmgmt_option_media": {
@@ -190,7 +244,7 @@
                 "name": "investmgmt_option_media_option",
                 "type": "INT",
                 "null": false,
-                "foreignTable": "investmgmt_investmen",
+                "foreignTable": "investmgmt_option",
                 "foreignKey": "investmgmt_option_id"
             },
             "investmgmt_option_media_media": {
@@ -216,7 +270,7 @@
                 "name": "investmgmt_option_note_option",
                 "type": "INT",
                 "null": false,
-                "foreignTable": "investmgmt_investmen",
+                "foreignTable": "investmgmt_option",
                 "foreignKey": "investmgmt_option_id"
             },
             "investmgmt_option_note_doc": {

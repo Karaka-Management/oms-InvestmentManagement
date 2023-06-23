@@ -52,6 +52,19 @@ final class InvestmentMapper extends DataMapperFactory
     ];
 
     /**
+     * Has one relation.
+     *
+     * @var array<string, array{mapper:class-string, external:string, by?:string, column?:string, conditional?:bool}>
+     * @since 1.0.0
+     */
+    public const OWNS_ONE = [
+        'type' => [
+            'mapper'     => InvestmentTypeMapper::class,
+            'external'   => 'investmgmt_investment_type',
+        ],
+    ];
+
+    /**
      * Has many relation.
      *
      * @var array<string, array{mapper:class-string, table:string, self?:?string, external?:?string, column?:string}>

@@ -17,6 +17,7 @@ namespace Modules\InvestmentManagement\Models;
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
 use phpOMS\Business\Finance\DepreciationType;
+use phpOMS\Localization\BaseStringL11nType;
 
 /**
  * Investment model.
@@ -38,6 +39,8 @@ class Investment
 
     public int $status = InvestmentStatus::DRAFT;
 
+    public BaseStringL11nType $type;
+
     public array $options = [];
 
     /**
@@ -57,14 +60,15 @@ class Investment
 
     /**
      * Constructor.
-     * 
+     *
      * @since 1.0.0
      */
-    public __construct()
+    public function __construct()
     {
         $this->createdBy = new NullAccount();
         $this->createdAt = new \DateTimeImmutable('now');
-        $this->perforamnceDate = new \DateTime('now');
+        $this->performanceDate = new \DateTime('now');
+        $this->type      = new BaseStringL11nType();
     }
 
     use \Modules\Media\Models\MediaListTrait;

@@ -47,7 +47,7 @@ final class Installer extends InstallerAbstract
     {
         parent::install($app, $info, $cfgHandler);
 
-        /* Fuel types */
+        /* Amount types */
         $fileContent = \file_get_contents(__DIR__ . '/Install/amounttypes.json');
         if ($fileContent === false) {
             return;
@@ -86,7 +86,7 @@ final class Installer extends InstallerAbstract
             $request->setData('title', \reset($type['l11n']));
             $request->setData('language', \array_keys($type['l11n'])[0] ?? 'en');
 
-            $module->apiFuelTypeCreate($request, $response);
+            $module->apiAmountTypeCreate($request, $response);
 
             $responseData = $response->get('');
             if (!\is_array($responseData)) {
@@ -112,7 +112,7 @@ final class Installer extends InstallerAbstract
                 $request->setData('language', $language);
                 $request->setData('type', $amountTypes[$type['name']]['id']);
 
-                $module->apiFuelTypeL11nCreate($request, $response);
+                $module->apiAmountTypeL11nCreate($request, $response);
             }
         }
 

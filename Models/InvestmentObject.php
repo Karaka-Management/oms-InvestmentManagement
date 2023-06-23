@@ -30,7 +30,7 @@ class InvestmentObject
 
     public string $description = '';
 
-    public int $supplier = 0;
+    public ?int $supplier = null;
 
     public string $supplierName = '';
 
