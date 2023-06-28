@@ -13,6 +13,6 @@
 declare(strict_types=1);
 
 return ['Navigation' => [
-    'PurchaseInquiries'  => 'Purchase Inquiries',
+    'InvestmentInquiries'  => 'Investment Inquiries',
     'Investments' => 'Investments',
 ]];

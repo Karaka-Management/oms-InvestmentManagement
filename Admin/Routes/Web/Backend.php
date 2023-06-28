@@ -6,7 +6,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/controlling/investment/list.*$' => [
+    '^.*/finance/investment/list.*$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentList',
             'verb'       => RouteVerb::GET,
@@ -17,7 +17,7 @@ return [
             ],
         ],
     ],
-    '^.*/controlling/investment/single.*$' => [
+    '^.*/finance/investment/single.*$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentSingle',
             'verb'       => RouteVerb::GET,
@@ -28,7 +28,7 @@ return [
             ],
         ],
     ],
-    '^.*/controlling/investment/create.*$' => [
+    '^.*/finance/investment/create.*$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentCreate',
             'verb'       => RouteVerb::GET,

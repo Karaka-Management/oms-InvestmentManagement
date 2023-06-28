@@ -108,7 +108,7 @@ final class ApiController extends Controller
         $investment->name     = $request->getDataString('name') ?? '';
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->status     = (int) ($request->getDataInt('status') ?? InvestmentStatus::DRAFT);
-        $investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
+        //$investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->unit     = $request->getDataInt('unit') ?? $this->app->unitId;
         $investment->createdBy = new NullAccount($request->header->account);

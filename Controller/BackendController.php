@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Controller;
 
+use Modules\InvestmentManagement\Models\InvestmentMapper;
 use phpOMS\Contract\RenderableInterface;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
@@ -45,7 +46,14 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-list');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004601001, $request, $response);
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
+
+        $list = InvestmentMapper::getAll()
+            ->with('createdBy')
+            ->sort('id', 'DESC')
+            ->execute();
+
+        $view->data['investments'] = $list;
 
         return $view;
     }
@@ -66,7 +74,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-create');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004601001, $request, $response);
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
 
         return $view;
     }
@@ -87,7 +95,7 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-create');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1004601001, $request, $response);
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
 
         return $view;
     }

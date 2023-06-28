@@ -39,7 +39,7 @@ class Investment
 
     public int $status = InvestmentStatus::DRAFT;
 
-    public BaseStringL11nType $type;
+    public ?BaseStringL11nType $type = null;
 
     public array $options = [];
 
@@ -68,7 +68,6 @@ class Investment
         $this->createdBy = new NullAccount();
         $this->createdAt = new \DateTimeImmutable('now');
         $this->performanceDate = new \DateTime('now');
-        $this->type      = new BaseStringL11nType();
     }
 
     use \Modules\Media\Models\MediaListTrait;

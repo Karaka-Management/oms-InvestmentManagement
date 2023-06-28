@@ -75,6 +75,8 @@
             "investmgmt_investment_type": {
                 "name": "investmgmt_investment_type",
                 "type": "INT",
+                "null": true,
+                "default": null,
                 "foreignTable": "investmgmt_investment_type",
                 "foreignKey": "investmgmt_investment_type_id"
             },
