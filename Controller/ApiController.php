@@ -33,12 +33,10 @@ use Modules\Media\Models\ReferenceMapper;
 use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Localization\BaseStringL11nType;
 use phpOMS\Localization\ISO639x1Enum;
-use phpOMS\Localization\NullBaseStringL11nType;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
-use phpOMS\Model\Message\FormValidation;
 use phpOMS\Stdlib\Base\FloatInt;
 
 /**
@@ -67,8 +65,8 @@ final class ApiController extends Controller
     public function apiInvestmentCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateInvestmentCreate($request))) {
-            $response->data[$request->uri->__toString()] = new FormValidation($val);
-            $response->header->status                    = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
@@ -83,14 +81,7 @@ final class ApiController extends Controller
             $this->createInvestmentMedia($investment, $request);
         }
 
-        $this->fillJsonResponse(
-            $request,
-            $response,
-            NotificationLevel::OK,
-            '',
-            $this->app->l11nManager->getText($response->header->l11n->language, '0', '0', 'SucessfulCreate'),
-            $investment
-        );
+        $this->createStandardCreateResponse($request, $response, $investment);
     }
 
     /**
@@ -246,8 +237,8 @@ final class ApiController extends Controller
     public function apiMediaAddToInvestment(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateMediaAddToInvestment($request))) {
-            $response->data[$request->uri->__toString()] = new FormValidation($val);
-            $response->header->status                    = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidAddResponse($request, $response, $val);
 
             return;
         }
@@ -428,8 +419,8 @@ final class ApiController extends Controller
     public function apiInvestmentOptionCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateInvestmentOptionCreate($request))) {
-            $response->data[$request->uri->__toString()] = new FormValidation($val);
-            $response->header->status                    = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
@@ -444,14 +435,7 @@ final class ApiController extends Controller
             $this->createInvestmentObjectMedia($investment, $request);
         }
 
-        $this->fillJsonResponse(
-            $request,
-            $response,
-            NotificationLevel::OK,
-            '',
-            $this->app->l11nManager->getText($response->header->l11n->language, '0', '0', 'SucessfulCreate'),
-            $investment
-        );
+        $this->createStandardCreateResponse($request, $response, $investment);
     }
 
     /**
@@ -559,8 +543,8 @@ final class ApiController extends Controller
     public function apiAmountTypeCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateAmountTypeCreate($request))) {
-            $response->data[$request->uri->__toString()] = new FormValidation($val);
-            $response->header->status                    = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
@@ -569,14 +553,7 @@ final class ApiController extends Controller
         $amount = $this->createAmountTypeFromRequest($request);
         $this->createModel($request->header->account, $amount, AmountTypeMapper::class, 'amount_type', $request->getOrigin());
 
-        $this->fillJsonResponse(
-            $request,
-            $response,
-            NotificationLevel::OK,
-            '',
-            $this->app->l11nManager->getText($response->header->l11n->language, '0', '0', 'SucessfulCreate'),
-            $amount
-        );
+        $this->createStandardCreateResponse($request, $response, $amount);
     }
 
     /**
@@ -708,8 +685,8 @@ final class ApiController extends Controller
     public function apiMediaAddToInvestmentObject(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateMediaAddToInvestmentObject($request))) {
-            $response->data[$request->uri->__toString()] = new FormValidation($val);
-            $response->header->status                    = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidAddResponse($request, $response, $val);
 
             return;
         }
@@ -877,15 +854,15 @@ final class ApiController extends Controller
     public function apiAmountTypeL11nCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateAmountTypeL11nCreate($request))) {
-            $response->data['amount_type_l11n_create'] = new FormValidation($val);
-            $response->header->status                      = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
 
         $typeL11n = $this->createAmountTypeL11nFromRequest($request);
         $this->createModel($request->header->account, $typeL11n, AmountTypeL11nMapper::class, 'amount_type_l11n', $request->getOrigin());
-        $this->fillJsonResponse($request, $response, NotificationLevel::OK, 'Localization', 'Localization successfully created', $typeL11n);
+        $this->createStandardCreateResponse($request, $response, $typeL11n);
     }
 
     /**
@@ -946,8 +923,8 @@ final class ApiController extends Controller
     public function apiNoteCreate(RequestAbstract $request, ResponseAbstract $response, mixed $data = null) : void
     {
         if (!empty($val = $this->validateNoteCreate($request))) {
-            $response->data['investment_note_create'] = new FormValidation($val);
-            $response->header->status              = RequestStatusCode::R_400;
+            $response->header->status = RequestStatusCode::R_400;
+            $this->createInvalidCreateResponse($request, $response, $val);
 
             return;
         }
