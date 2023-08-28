@@ -98,7 +98,7 @@ final class ApiController extends Controller
         $investment           = new Investment();
         $investment->name     = $request->getDataString('name') ?? '';
         $investment->description     = $request->getDataString('description') ?? '';
-        $investment->status     = (int) ($request->getDataInt('status') ?? InvestmentStatus::DRAFT);
+        $investment->status     = $request->getDataInt('status') ?? InvestmentStatus::DRAFT;
         //$investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->unit     = $request->getDataInt('unit') ?? $this->app->unitId;
@@ -258,7 +258,7 @@ final class ApiController extends Controller
                 virtualPath: $path,
                 pathSettings: PathSettings::FILE_PATH,
                 hasAccountRelation: false,
-                readContent: (bool) ($request->getData('parse_content') ?? false)
+                readContent: $request->getDataBool('parse_content') ?? false
             );
 
             $collection = null;
@@ -706,7 +706,7 @@ final class ApiController extends Controller
                 virtualPath: $path,
                 pathSettings: PathSettings::FILE_PATH,
                 hasAccountRelation: false,
-                readContent: (bool) ($request->getData('parse_content') ?? false)
+                readContent: $request->getDataBool('parse_content') ?? false
             );
 
             $collection = null;
