@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Models;
 
-use phpOMS\Business\Finance\DepreciationType;
 use phpOMS\Stdlib\Base\FloatInt;
 
 /**

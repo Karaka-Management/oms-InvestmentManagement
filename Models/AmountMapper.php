@@ -36,11 +36,11 @@ final class AmountGroupMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_amount_id'                => ['name' => 'investmgmt_amount_id',         'type' => 'int',      'internal' => 'id'],
-        'investmgmt_amount_name'             => ['name' => 'investmgmt_amount_name',      'type' => 'string',   'internal' => 'name'],
+        'investmgmt_amount_id'                 => ['name' => 'investmgmt_amount_id',         'type' => 'int',      'internal' => 'id'],
+        'investmgmt_amount_name'               => ['name' => 'investmgmt_amount_name',      'type' => 'string',   'internal' => 'name'],
         'investmgmt_amount_amount'             => ['name' => 'investmgmt_amount_amount',      'type' => 'Serializable',   'internal' => 'type'],
-        'investmgmt_amount_date'             => ['name' => 'investmgmt_amount_date',      'type' => 'DateTime',   'internal' => 'date'],
-        'investmgmt_amount_group'             => ['name' => 'investmgmt_amount_group',      'type' => 'int',   'internal' => 'group'],
+        'investmgmt_amount_date'               => ['name' => 'investmgmt_amount_date',      'type' => 'DateTime',   'internal' => 'date'],
+        'investmgmt_amount_group'              => ['name' => 'investmgmt_amount_group',      'type' => 'int',   'internal' => 'group'],
     ];
 
     /**

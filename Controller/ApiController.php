@@ -20,9 +20,9 @@ use Modules\InvestmentManagement\Models\AmountGroup;
 use Modules\InvestmentManagement\Models\AmountTypeL11nMapper;
 use Modules\InvestmentManagement\Models\AmountTypeMapper;
 use Modules\InvestmentManagement\Models\Investment;
+use Modules\InvestmentManagement\Models\InvestmentMapper;
 use Modules\InvestmentManagement\Models\InvestmentObject;
 use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
-use Modules\InvestmentManagement\Models\InvestmentMapper;
 use Modules\InvestmentManagement\Models\InvestmentStatus;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\MediaMapper;
@@ -95,14 +95,14 @@ final class ApiController extends Controller
      */
     public function createInvestmentFromRequest(RequestAbstract $request) : Investment
     {
-        $investment           = new Investment();
-        $investment->name     = $request->getDataString('name') ?? '';
+        $investment                  = new Investment();
+        $investment->name            = $request->getDataString('name') ?? '';
         $investment->description     = $request->getDataString('description') ?? '';
-        $investment->status     = $request->getDataInt('status') ?? InvestmentStatus::DRAFT;
+        $investment->status          = $request->getDataInt('status') ?? InvestmentStatus::DRAFT;
         //$investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
         $investment->description     = $request->getDataString('description') ?? '';
-        $investment->unit     = $request->getDataInt('unit') ?? $this->app->unitId;
-        $investment->createdBy = new NullAccount($request->header->account);
+        $investment->unit            = $request->getDataInt('unit') ?? $this->app->unitId;
+        $investment->createdBy       = new NullAccount($request->header->account);
         $investment->performanceDate = $request->getDataDateTime('performance') ?? new \DateTime($investment->createdAt->format('Y-m-d H:i:s'));
 
         return $investment;
@@ -111,8 +111,8 @@ final class ApiController extends Controller
     /**
      * Create media files for investment
      *
-     * @param Investment         $investment Investment
-     * @param RequestAbstract $request Request incl. media do upload
+     * @param Investment      $investment Investment
+     * @param RequestAbstract $request    Request incl. media do upload
      *
      * @return void
      *
@@ -245,7 +245,7 @@ final class ApiController extends Controller
 
         /** @var \Modules\InvestmentManagement\Models\Investment $investment */
         $investment = InvestmentMapper::get()->where('id', (int) $request->getData('investment'))->execute();
-        $path    = $this->createInvestmentDir($investment);
+        $path       = $this->createInvestmentDir($investment);
 
         $uploaded = [];
         if (!empty($uploadedFiles = $request->files)) {
@@ -470,15 +470,15 @@ final class ApiController extends Controller
      */
     public function createInvestmentOptionFromRequest(RequestAbstract $request) : InvestmentObject
     {
-        $investment           = new InvestmentObject();
-        $investment->name     = $request->getDataString('name') ?? '';
-        $investment->description     = $request->getDataString('description') ?? '';
-        $investment->link     = $request->getDataString('link') ?? '';
-        $investment->investment     = (int) $request->getData('investment');
-        $investment->parent     = $request->getDataInt('parent');
-        $investment->supplier     = $request->getDataInt('supplier');
+        $investment                   = new InvestmentObject();
+        $investment->name             = $request->getDataString('name') ?? '';
+        $investment->description      = $request->getDataString('description') ?? '';
+        $investment->link             = $request->getDataString('link') ?? '';
+        $investment->investment       = (int) $request->getData('investment');
+        $investment->parent           = $request->getDataInt('parent');
+        $investment->supplier         = $request->getDataInt('supplier');
         $investment->supplierName     = $request->getDataString('supplierName') ?? '';
-        $investment->item     = $request->getDataInt('item');
+        $investment->item             = $request->getDataInt('item');
 
         // @todo: reconsider the following lines. This seems rather complicated.
         if ($request->hasData('amount')) {
@@ -486,35 +486,35 @@ final class ApiController extends Controller
 
             foreach ($types as $type) {
                 if ($type->title = 'costs') {
-                    $defaultGroup = new AmountGroup();
+                    $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Purchase Price'; // @todo: replace with api l11n
                     $defaultGroup->type = $type->id;
 
-                    $amount = new Amount();
+                    $amount         = new Amount();
                     $amount->amount = new FloatInt((int) $request->getDataInt('amount'));
 
                     $defaultGroup->amounts[] = $amount;
 
                     $investment->amountGroups[] = $defaultGroup;
                 } elseif ($type->title === 'cashflow') {
-                    $defaultGroup = new AmountGroup();
+                    $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Cashflow'; // @todo: replace with api l11n
                     $defaultGroup->type = $type->id;
 
                     // @todo: calculate date based on performance date + offer conditions / 30 days
-                    $amount = new Amount();
+                    $amount         = new Amount();
                     $amount->amount = new FloatInt((int) $request->getDataInt('amount'));
 
                     $defaultGroup->amounts[] = $amount;
 
                     $investment->amountGroups[] = $defaultGroup;
                 } elseif ($type->title === 'depreciation') {
-                    $defaultGroup = new AmountGroup();
+                    $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Depreciation'; // @todo: replace with api l11n
                     $defaultGroup->type = $type->id;
 
                     // @todo: calculate automatic depreciation;
-                    $amount = new Amount();
+                    $amount         = new Amount();
                     $amount->amount = new FloatInt((int) $request->getDataInt('amount'));
 
                     $defaultGroup->amounts[] = $amount;
@@ -559,8 +559,8 @@ final class ApiController extends Controller
     /**
      * Create media files for investment
      *
-     * @param InvestmentObject         $investment Investment
-     * @param RequestAbstract $request Request incl. media do upload
+     * @param InvestmentObject $investment Investment
+     * @param RequestAbstract  $request    Request incl. media do upload
      *
      * @return void
      *
@@ -693,7 +693,7 @@ final class ApiController extends Controller
 
         /** @var \Modules\InvestmentManagement\Models\InvestmentObject $investment */
         $investment = InvestmentObjectMapper::get()->where('id', (int) $request->getData('option'))->execute();
-        $path    = $this->createInvestmentObjectDir($investment);
+        $path       = $this->createInvestmentObjectDir($investment);
 
         $uploaded = [];
         if (!empty($uploadedFiles = $request->files)) {

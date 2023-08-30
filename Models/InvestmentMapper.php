@@ -15,9 +15,8 @@ declare(strict_types=1);
 namespace Modules\InvestmentManagement\Models;
 
 use Modules\Admin\Models\AccountMapper;
-use Modules\Media\Models\MediaMapper;
-use Modules\Organization\Models\UnitMapper;
 use Modules\Editor\Models\EditorDocMapper;
+use Modules\Media\Models\MediaMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
@@ -40,15 +39,15 @@ final class InvestmentMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_investment_id'                => ['name' => 'investmgmt_investment_id',         'type' => 'int',      'internal' => 'id'],
-        'investmgmt_investment_name'             => ['name' => 'investmgmt_investment_name',      'type' => 'string',   'internal' => 'name'],
-        'investmgmt_investment_description'              => ['name' => 'investmgmt_investment_description',       'type' => 'string',   'internal' => 'description'],
-        'investmgmt_investment_status'             => ['name' => 'investmgmt_investment_status',      'type' => 'int',   'internal' => 'status'],
+        'investmgmt_investment_id'                            => ['name' => 'investmgmt_investment_id',         'type' => 'int',      'internal' => 'id'],
+        'investmgmt_investment_name'                          => ['name' => 'investmgmt_investment_name',      'type' => 'string',   'internal' => 'name'],
+        'investmgmt_investment_description'                   => ['name' => 'investmgmt_investment_description',       'type' => 'string',   'internal' => 'description'],
+        'investmgmt_investment_status'                        => ['name' => 'investmgmt_investment_status',      'type' => 'int',   'internal' => 'status'],
         'investmgmt_investment_depreciation_type'             => ['name' => 'investmgmt_investment_depreciation_type',      'type' => 'int',   'internal' => 'depreciationType'],
-        'investmgmt_investment_unit'             => ['name' => 'investmgmt_investment_unit',      'type' => 'int',   'internal' => 'unit'],
-        'investmgmt_investment_created_by'        => ['name' => 'investmgmt_investment_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
-        'investmgmt_investment_performance'        => ['name' => 'investmgmt_investment_performance', 'type' => 'DateTime', 'internal' => 'performanceDate'],
-        'investmgmt_investment_created_at'        => ['name' => 'investmgmt_investment_created_at', 'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
+        'investmgmt_investment_unit'                          => ['name' => 'investmgmt_investment_unit',      'type' => 'int',   'internal' => 'unit'],
+        'investmgmt_investment_created_by'                    => ['name' => 'investmgmt_investment_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
+        'investmgmt_investment_performance'                   => ['name' => 'investmgmt_investment_performance', 'type' => 'DateTime', 'internal' => 'performanceDate'],
+        'investmgmt_investment_created_at'                    => ['name' => 'investmgmt_investment_created_at', 'type' => 'DateTimeImmutable', 'internal' => 'createdAt', 'readonly' => true],
     ];
 
     /**

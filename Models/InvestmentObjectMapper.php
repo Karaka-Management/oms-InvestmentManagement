@@ -14,11 +14,10 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Models;
 
-use Modules\Admin\Models\AccountMapper;
-use Modules\Media\Models\MediaMapper;
 use Modules\Editor\Models\EditorDocMapper;
-use Modules\SupplierManagement\Models\SupplierMapper;
 use Modules\ItemManagement\Models\ItemMapper;
+use Modules\Media\Models\MediaMapper;
+use Modules\SupplierManagement\Models\SupplierMapper;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
@@ -41,15 +40,15 @@ final class InvestmentObjectMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_option_id'                => ['name' => 'investmgmt_option_id',         'type' => 'int',      'internal' => 'id'],
-        'investmgmt_option_name'             => ['name' => 'investmgmt_option_name',      'type' => 'string',   'internal' => 'name'],
-        'investmgmt_option_description'              => ['name' => 'investmgmt_option_description',       'type' => 'string',   'internal' => 'description'],
-        'investmgmt_option_link'              => ['name' => 'investmgmt_option_link',       'type' => 'string',   'internal' => 'link'],
-        'investmgmt_option_supplier'             => ['name' => 'investmgmt_option_supplier',      'type' => 'int',   'internal' => 'supplier'],
+        'investmgmt_option_id'                        => ['name' => 'investmgmt_option_id',         'type' => 'int',      'internal' => 'id'],
+        'investmgmt_option_name'                      => ['name' => 'investmgmt_option_name',      'type' => 'string',   'internal' => 'name'],
+        'investmgmt_option_description'               => ['name' => 'investmgmt_option_description',       'type' => 'string',   'internal' => 'description'],
+        'investmgmt_option_link'                      => ['name' => 'investmgmt_option_link',       'type' => 'string',   'internal' => 'link'],
+        'investmgmt_option_supplier'                  => ['name' => 'investmgmt_option_supplier',      'type' => 'int',   'internal' => 'supplier'],
         'investmgmt_option_supplier_alt'              => ['name' => 'investmgmt_option_supplier_alt',       'type' => 'string',   'internal' => 'supplierName'],
-        'investmgmt_option_item'             => ['name' => 'investmgmt_option_item',      'type' => 'int',   'internal' => 'item'],
-        'investmgmt_option_approved'             => ['name' => 'investmgmt_option_approved',      'type' => 'bool',   'internal' => 'approved'],
-        'investmgmt_option_investment'             => ['name' => 'investmgmt_option_investment',      'type' => 'int',   'internal' => 'investment'],
+        'investmgmt_option_item'                      => ['name' => 'investmgmt_option_item',      'type' => 'int',   'internal' => 'item'],
+        'investmgmt_option_approved'                  => ['name' => 'investmgmt_option_approved',      'type' => 'bool',   'internal' => 'approved'],
+        'investmgmt_option_investment'                => ['name' => 'investmgmt_option_investment',      'type' => 'int',   'internal' => 'investment'],
     ];
 
     /**

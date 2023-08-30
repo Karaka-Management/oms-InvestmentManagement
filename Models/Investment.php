@@ -65,8 +65,8 @@ class Investment
      */
     public function __construct()
     {
-        $this->createdBy = new NullAccount();
-        $this->createdAt = new \DateTimeImmutable('now');
+        $this->createdBy       = new NullAccount();
+        $this->createdAt       = new \DateTimeImmutable('now');
         $this->performanceDate = new \DateTime('now');
     }
 

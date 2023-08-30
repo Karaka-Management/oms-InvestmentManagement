@@ -36,9 +36,9 @@ final class AmountGroupMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_amount_group_id'                => ['name' => 'investmgmt_amount_group_id',         'type' => 'int',      'internal' => 'id'],
-        'investmgmt_amount_group_name'             => ['name' => 'investmgmt_amount_group_name',      'type' => 'string',   'internal' => 'name'],
-        'investmgmt_amount_group_type'             => ['name' => 'investmgmt_amount_group_type',      'type' => 'int',   'internal' => 'type'],
+        'investmgmt_amount_group_id'                 => ['name' => 'investmgmt_amount_group_id',         'type' => 'int',      'internal' => 'id'],
+        'investmgmt_amount_group_name'               => ['name' => 'investmgmt_amount_group_name',      'type' => 'string',   'internal' => 'name'],
+        'investmgmt_amount_group_type'               => ['name' => 'investmgmt_amount_group_type',      'type' => 'int',   'internal' => 'type'],
         'investmgmt_amount_group_option'             => ['name' => 'investmgmt_amount_group_option',      'type' => 'int',   'internal' => 'option'],
     ];
 
@@ -63,7 +63,7 @@ final class AmountGroupMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'amounts' => [
-            'mapper'   => AmountGroupMapper::class,
+            'mapper'   => self::class,
             'table'    => 'investmgmt_amount',
             'self'     => 'investmgmt_amount_group',
             'external' => null,

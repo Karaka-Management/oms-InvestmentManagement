@@ -54,7 +54,7 @@ final class Installer extends InstallerAbstract
         }
 
         /** @var array $types */
-        $types     = \json_decode($fileContent, true);
+        $types       = \json_decode($fileContent, true);
         $amountTypes = self::createAmountTypes($app, $types);
     }
 
