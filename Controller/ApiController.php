@@ -33,6 +33,7 @@ use Modules\Media\Models\ReferenceMapper;
 use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Localization\BaseStringL11nType;
 use phpOMS\Localization\ISO639x1Enum;
+use phpOMS\Localization\NullBaseStringL11nType;
 use phpOMS\Message\Http\RequestStatusCode;
 use phpOMS\Message\NotificationLevel;
 use phpOMS\Message\RequestAbstract;
@@ -99,11 +100,11 @@ final class ApiController extends Controller
         $investment->name            = $request->getDataString('name') ?? '';
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->status          = $request->getDataInt('status') ?? InvestmentStatus::DRAFT;
-        //$investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->unit            = $request->getDataInt('unit') ?? $this->app->unitId;
         $investment->createdBy       = new NullAccount($request->header->account);
         $investment->performanceDate = $request->getDataDateTime('performance') ?? new \DateTime($investment->createdAt->format('Y-m-d H:i:s'));
+        //$investment->type     = new NullBaseStringL11nType((int) ($request->getDataInt('type') ?? 0));
 
         return $investment;
     }
@@ -390,7 +391,7 @@ final class ApiController extends Controller
     /**
      * Create media directory path
      *
-     * @param Investment $investment Investment
+     * @param InvestmentObject $investment Investment
      *
      * @return string
      *
@@ -470,25 +471,26 @@ final class ApiController extends Controller
      */
     public function createInvestmentOptionFromRequest(RequestAbstract $request) : InvestmentObject
     {
-        $investment                   = new InvestmentObject();
-        $investment->name             = $request->getDataString('name') ?? '';
-        $investment->description      = $request->getDataString('description') ?? '';
-        $investment->link             = $request->getDataString('link') ?? '';
-        $investment->investment       = (int) $request->getData('investment');
-        $investment->parent           = $request->getDataInt('parent');
-        $investment->supplier         = $request->getDataInt('supplier');
-        $investment->supplierName     = $request->getDataString('supplierName') ?? '';
-        $investment->item             = $request->getDataInt('item');
+        $investment               = new InvestmentObject();
+        $investment->name         = $request->getDataString('name') ?? '';
+        $investment->description  = $request->getDataString('description') ?? '';
+        $investment->link         = $request->getDataString('link') ?? '';
+        $investment->investment   = (int) $request->getData('investment');
+        $investment->parent       = $request->getDataInt('parent');
+        $investment->supplier     = $request->getDataInt('supplier');
+        $investment->supplierName = $request->getDataString('supplierName') ?? '';
+        $investment->item         = $request->getDataInt('item');
 
         // @todo: reconsider the following lines. This seems rather complicated.
         if ($request->hasData('amount')) {
+            /** @var BaseStringL11nType[] $types */
             $types = AmountTypeMapper::getAll()->execute();
 
             foreach ($types as $type) {
                 if ($type->title = 'costs') {
                     $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Purchase Price'; // @todo: replace with api l11n
-                    $defaultGroup->type = $type->id;
+                    $defaultGroup->type = new NullBaseStringL11nType($type->id);
 
                     $amount         = new Amount();
                     $amount->amount = new FloatInt((int) $request->getDataInt('amount'));
@@ -499,7 +501,7 @@ final class ApiController extends Controller
                 } elseif ($type->title === 'cashflow') {
                     $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Cashflow'; // @todo: replace with api l11n
-                    $defaultGroup->type = $type->id;
+                    $defaultGroup->type = new NullBaseStringL11nType($type->id);
 
                     // @todo: calculate date based on performance date + offer conditions / 30 days
                     $amount         = new Amount();
@@ -511,7 +513,7 @@ final class ApiController extends Controller
                 } elseif ($type->title === 'depreciation') {
                     $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Depreciation'; // @todo: replace with api l11n
-                    $defaultGroup->type = $type->id;
+                    $defaultGroup->type = new NullBaseStringL11nType($type->id);
 
                     // @todo: calculate automatic depreciation;
                     $amount         = new Amount();

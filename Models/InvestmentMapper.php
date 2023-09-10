@@ -27,7 +27,7 @@ use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
  * @link    https://jingga.app
  * @since   1.0.0
  *
- * @template T of Task
+ * @template T of Investment
  * @extends DataMapperFactory<T>
  */
 final class InvestmentMapper extends DataMapperFactory
