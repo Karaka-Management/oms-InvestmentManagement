@@ -36,6 +36,11 @@ class Amount
 
     public ?\DateTime $date = null;
 
+    /**
+     * Constructor.
+     *
+     * @since 1.0.0
+     */
     public function __construct()
     {
         $this->amount = new FloatInt();
