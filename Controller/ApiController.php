@@ -391,7 +391,7 @@ final class ApiController extends Controller
     /**
      * Create media directory path
      *
-     * @param InvestmentObject $investment Investment
+     * @param InvestmentObject $object Investment
      *
      * @return string
      *
