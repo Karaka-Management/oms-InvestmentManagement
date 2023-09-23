@@ -13,13 +13,13 @@
 declare(strict_types=1);
 
 return ['InvestmentManagement' => [
-    ':status1'    => 'Draft',
-    ':status2'    => 'Open',
-    ':status3'    => 'Approved',
-    ':status4'    => 'Denied',
+    ':status1'    => '',
+    ':status2'    => '',
+    ':status3'    => '',
+    ':status4'    => '',
     'Creator'     => '',
-    'Investment'  => 'Investment',
-    'Investments' => 'Investments',
+    'Investment'  => '',
+    'Investments' => '',
     'Name'        => '',
     'Status'      => '',
     'Title'       => '',
