@@ -93,9 +93,9 @@ final class Installer extends InstallerAbstract
                 continue;
             }
 
-            $amountTypes[$type['name']] = !\is_array($responseData['response'])
-                ? $responseData['response']->toArray()
-                : $responseData['response'];
+            $amountTypes[$type['name']] = \is_array($responseData['response'])
+                ? $responseData['response']
+                : $responseData['response']->toArray();
 
             $isFirst = true;
             foreach ($type['l11n'] as $language => $l11n) {

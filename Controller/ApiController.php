@@ -487,7 +487,7 @@ final class ApiController extends Controller
             $types = AmountTypeMapper::getAll()->execute();
 
             foreach ($types as $type) {
-                if ($type->title = 'costs') {
+                if ($type->title === 'costs') {
                     $defaultGroup       = new AmountGroup();
                     $defaultGroup->name = 'Purchase Price'; // @todo: replace with api l11n
                     $defaultGroup->type = new NullBaseStringL11nType($type->id);
