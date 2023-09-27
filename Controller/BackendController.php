@@ -35,7 +35,7 @@ final class BackendController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return RenderableInterface
      *
@@ -63,7 +63,7 @@ final class BackendController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return RenderableInterface
      *
@@ -84,7 +84,7 @@ final class BackendController extends Controller
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
-     * @param mixed            $data     Generic data
+     * @param array            $data     Generic data
      *
      * @return RenderableInterface
      *
