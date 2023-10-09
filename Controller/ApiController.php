@@ -938,7 +938,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $responseData = $response->get($request->uri->__toString());
+        $responseData = $response->getDataArray($request->uri->__toString());
         if (!\is_array($responseData)) {
             return;
         }
@@ -988,7 +988,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $responseData = $response->get($request->uri->__toString());
+        $responseData = $response->getDataArray($request->uri->__toString());
         if (!\is_array($responseData)) {
             return;
         }

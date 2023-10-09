@@ -21,7 +21,7 @@ use phpOMS\Localization\BaseStringL11nType;
  *
  * @package Modules\InvestmentManagement\Models
  * @license OMS License 2.0
- * @link    https://orange-management.org
+ * @link    https://jingga.app
  * @since   1.0.0
  */
 class AmountGroup
