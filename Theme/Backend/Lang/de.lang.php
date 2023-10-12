@@ -13,14 +13,14 @@
 declare(strict_types=1);
 
 return ['InvestmentManagement' => [
-    ':status1'    => '',
-    ':status2'    => '',
-    ':status3'    => '',
-    ':status4'    => '',
-    'Creator'     => '',
-    'Investment'  => '',
-    'Investments' => '',
-    'Name'        => '',
-    'Status'      => '',
-    'Title'       => '',
+    ':status1'    => 'Entwurf',
+    ':status2'    => 'Offen',
+    ':status3'    => 'Genehmigt',
+    ':status4'    => 'Abgelehnt',
+    'Creator'     => 'Ersteller',
+    'Investment'  => 'Investition',
+    'Investments' => 'Investitionen',
+    'Name'        => 'Name',
+    'Status'      => 'Status',
+    'Title'       => 'Titel',
 ]];
