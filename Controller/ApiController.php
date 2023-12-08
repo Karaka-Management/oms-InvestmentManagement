@@ -481,7 +481,7 @@ final class ApiController extends Controller
         $investment->supplierName = $request->getDataString('supplierName') ?? '';
         $investment->item         = $request->getDataInt('item');
 
-        // @todo: reconsider the following lines. This seems rather complicated.
+        // @todo reconsider the following lines. This seems rather complicated.
         if ($request->hasData('amount')) {
             /** @var BaseStringL11nType[] $types */
             $types = AmountTypeMapper::getAll()->execute();
@@ -489,7 +489,7 @@ final class ApiController extends Controller
             foreach ($types as $type) {
                 if ($type->title === 'costs') {
                     $defaultGroup       = new AmountGroup();
-                    $defaultGroup->name = 'Purchase Price'; // @todo: replace with api l11n
+                    $defaultGroup->name = 'Purchase Price'; // @todo replace with api l11n
                     $defaultGroup->type = new NullBaseStringL11nType($type->id);
 
                     $amount         = new Amount();
@@ -500,10 +500,10 @@ final class ApiController extends Controller
                     $investment->amountGroups[] = $defaultGroup;
                 } elseif ($type->title === 'cashflow') {
                     $defaultGroup       = new AmountGroup();
-                    $defaultGroup->name = 'Cashflow'; // @todo: replace with api l11n
+                    $defaultGroup->name = 'Cashflow'; // @todo replace with api l11n
                     $defaultGroup->type = new NullBaseStringL11nType($type->id);
 
-                    // @todo: calculate date based on performance date + offer conditions / 30 days
+                    // @todo calculate date based on performance date + offer conditions / 30 days
                     $amount         = new Amount();
                     $amount->amount = new FloatInt((int) $request->getDataInt('amount'));
 
@@ -512,10 +512,10 @@ final class ApiController extends Controller
                     $investment->amountGroups[] = $defaultGroup;
                 } elseif ($type->title === 'depreciation') {
                     $defaultGroup       = new AmountGroup();
-                    $defaultGroup->name = 'Depreciation'; // @todo: replace with api l11n
+                    $defaultGroup->name = 'Depreciation'; // @todo replace with api l11n
                     $defaultGroup->type = new NullBaseStringL11nType($type->id);
 
-                    // @todo: calculate automatic depreciation;
+                    // @todo calculate automatic depreciation;
                     $amount         = new Amount();
                     $amount->amount = new FloatInt((int) $request->getDataInt('amount'));
 
