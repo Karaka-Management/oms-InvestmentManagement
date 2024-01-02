@@ -35,8 +35,6 @@ class Investment
 
     public string $description = '';
 
-    public int $depreciationType = DepreciationType::NONE;
-
     public int $status = InvestmentStatus::DRAFT;
 
     public ?BaseStringL11nType $type = null;

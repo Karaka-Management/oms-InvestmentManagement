@@ -14,19 +14,33 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Models;
 
-use phpOMS\Stdlib\Base\Enum;
-
 /**
- * Permission category enum.
+ * Null model
  *
  * @package Modules\InvestmentManagement\Models
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
  */
-abstract class PermissionCategory extends Enum
+final class NullAmount extends Amount
 {
-    public const INVESTMENT = 1;
+    /**
+     * Constructor
+     *
+     * @param int $id Model id
+     *
+     * @since 1.0.0
+     */
+    public function __construct(int $id = 0)
+    {
+        $this->id = $id;
+    }
 
-    public const AMOUNT_TYPE = 1;
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize() : mixed
+    {
+        return ['id' => $this->id];
+    }
 }

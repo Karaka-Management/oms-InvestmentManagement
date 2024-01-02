@@ -478,7 +478,7 @@ final class ApiController extends Controller
         $investment->investment   = (int) $request->getData('investment');
         $investment->parent       = $request->getDataInt('parent');
         $investment->supplier     = $request->getDataInt('supplier');
-        $investment->supplierName = $request->getDataString('supplierName') ?? '';
+        $investment->supplierName = $request->getDataString('suppliername') ?? '';
         $investment->item         = $request->getDataInt('item');
 
         // @todo reconsider the following lines. This seems rather complicated.

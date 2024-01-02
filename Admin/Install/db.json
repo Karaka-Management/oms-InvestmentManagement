@@ -80,11 +80,6 @@
                 "foreignTable": "investmgmt_investment_type",
                 "foreignKey": "investmgmt_investment_type_id"
             },
-            "investmgmt_investment_depreciation_type": {
-                "name": "investmgmt_investment_depreciation_type",
-                "type": "TINYINT",
-                "null": false
-            },
             "investmgmt_investment_created_by": {
                 "name": "investmgmt_investment_created_by",
                 "type": "INT",
@@ -229,6 +224,235 @@
                 "default": null,
                 "foreignTable": "investmgmt_option",
                 "foreignKey": "investmgmt_option_id"
+            }
+        }
+    },
+    "investmgmt_attr_type": {
+        "name": "investmgmt_attr_type",
+        "fields": {
+            "investmgmt_attr_type_id": {
+                "name": "investmgmt_attr_type_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_attr_type_name": {
+                "name": "investmgmt_attr_type_name",
+                "type": "VARCHAR(255)",
+                "null": false,
+                "unique": true
+            },
+            "investmgmt_attr_type_datatype": {
+                "name": "investmgmt_attr_type_datatype",
+                "type": "INT(11)",
+                "null": false
+            },
+            "investmgmt_attr_type_fields": {
+                "name": "investmgmt_attr_type_fields",
+                "type": "INT(11)",
+                "null": false
+            },
+            "investmgmt_attr_type_custom": {
+                "name": "investmgmt_attr_type_custom",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "investmgmt_attr_type_required": {
+                "description": "Every item must have this attribute type if set to true.",
+                "name": "investmgmt_attr_type_required",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "investmgmt_attr_type_pattern": {
+                "description": "This is a regex validation pattern.",
+                "name": "investmgmt_attr_type_pattern",
+                "type": "VARCHAR(255)",
+                "null": false
+            }
+        }
+    },
+    "investmgmt_attr_type_l11n": {
+        "name": "investmgmt_attr_type_l11n",
+        "fields": {
+            "investmgmt_attr_type_l11n_id": {
+                "name": "investmgmt_attr_type_l11n_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_attr_type_l11n_title": {
+                "name": "investmgmt_attr_type_l11n_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "investmgmt_attr_type_l11n_type": {
+                "name": "investmgmt_attr_type_l11n_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_attr_type",
+                "foreignKey": "investmgmt_attr_type_id"
+            },
+            "investmgmt_attr_type_l11n_lang": {
+                "name": "investmgmt_attr_type_l11n_lang",
+                "type": "VARCHAR(2)",
+                "null": false,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            }
+        }
+    },
+    "investmgmt_attr_value": {
+        "name": "investmgmt_attr_value",
+        "fields": {
+            "investmgmt_attr_value_id": {
+                "name": "investmgmt_attr_value_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_attr_value_default": {
+                "name": "investmgmt_attr_value_default",
+                "type": "TINYINT(1)",
+                "null": false
+            },
+            "investmgmt_attr_value_valueStr": {
+                "name": "investmgmt_attr_value_valueStr",
+                "type": "VARCHAR(255)",
+                "null": true,
+                "default": null
+            },
+            "investmgmt_attr_value_valueInt": {
+                "name": "investmgmt_attr_value_valueInt",
+                "type": "INT(11)",
+                "null": true,
+                "default": null
+            },
+            "investmgmt_attr_value_valueDec": {
+                "name": "investmgmt_attr_value_valueDec",
+                "type": "DECIMAL(19,5)",
+                "null": true,
+                "default": null
+            },
+            "investmgmt_attr_value_valueDat": {
+                "name": "investmgmt_attr_value_valueDat",
+                "type": "DATETIME",
+                "null": true,
+                "default": null
+            },
+            "investmgmt_attr_value_unit": {
+                "name": "investmgmt_attr_value_unit",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "investmgmt_attr_value_deptype": {
+                "name": "investmgmt_attr_value_deptype",
+                "type": "INT(11)",
+                "null": true,
+                "default": null,
+                "foreignTable": "investmgmt_attr_type",
+                "foreignKey": "investmgmt_attr_type_id"
+            },
+            "investmgmt_attr_value_depvalue": {
+                "name": "investmgmt_attr_value_depvalue",
+                "type": "INT(11)",
+                "null": true,
+                "default": null,
+                "foreignTable": "investmgmt_attr_value",
+                "foreignKey": "investmgmt_attr_value_id"
+            }
+        }
+    },
+    "investmgmt_attr_value_l11n": {
+        "name": "investmgmt_attr_value_l11n",
+        "fields": {
+            "investmgmt_attr_value_l11n_id": {
+                "name": "investmgmt_attr_value_l11n_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_attr_value_l11n_title": {
+                "name": "investmgmt_attr_value_l11n_title",
+                "type": "VARCHAR(255)",
+                "null": false
+            },
+            "investmgmt_attr_value_l11n_value": {
+                "name": "investmgmt_attr_value_l11n_value",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_attr_value",
+                "foreignKey": "investmgmt_attr_value_id"
+            },
+            "investmgmt_attr_value_l11n_lang": {
+                "name": "investmgmt_attr_value_l11n_lang",
+                "type": "VARCHAR(2)",
+                "null": false,
+                "foreignTable": "language",
+                "foreignKey": "language_639_1"
+            }
+        }
+    },
+    "investmgmt_option_attr_default": {
+        "name": "investmgmt_option_attr_default",
+        "fields": {
+            "investmgmt_option_attr_default_id": {
+                "name": "investmgmt_option_attr_default_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_option_attr_default_type": {
+                "name": "investmgmt_option_attr_default_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_attr_type",
+                "foreignKey": "investmgmt_attr_type_id"
+            },
+            "investmgmt_option_attr_default_value": {
+                "name": "investmgmt_option_attr_default_value",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_attr_value",
+                "foreignKey": "investmgmt_attr_value_id"
+            }
+        }
+    },
+    "investmgmt_option_attr": {
+        "name": "investmgmt_option_attr",
+        "fields": {
+            "investmgmt_option_attr_id": {
+                "name": "investmgmt_option_attr_id",
+                "type": "INT",
+                "null": false,
+                "primary": true,
+                "autoincrement": true
+            },
+            "investmgmt_option_attr_option": {
+                "name": "investmgmt_option_attr_option",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_option",
+                "foreignKey": "investmgmt_option_id"
+            },
+            "investmgmt_option_attr_type": {
+                "name": "investmgmt_option_attr_type",
+                "type": "INT(11)",
+                "null": false,
+                "foreignTable": "investmgmt_attr_type",
+                "foreignKey": "investmgmt_attr_type_id"
+            },
+            "investmgmt_option_attr_value": {
+                "name": "investmgmt_option_attr_value",
+                "type": "INT(11)",
+                "null": true,
+                "default": null,
+                "foreignTable": "investmgmt_attr_value",
+                "foreignKey": "investmgmt_attr_value_id"
             }
         }
     },

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\InvestmentManagement\Models;
 
 use phpOMS\Localization\BaseStringL11nType;
+use phpOMS\Stdlib\Base\FloatInt;
 
 /**
  * Costs/Earnings.
@@ -30,6 +31,12 @@ class AmountGroup
 
     public string $name = '';
 
+    /**
+     * Amounts
+     *
+     * @var Amount[]
+     * @since 1.0.0
+     */
     public array $amounts = [];
 
     public BaseStringL11nType $type;
@@ -44,5 +51,15 @@ class AmountGroup
     public function __construct()
     {
         $this->type = new BaseStringL11nType();
+    }
+
+    public function sum() : FloatInt
+    {
+        $sum = new FloatInt();
+        foreach ($this->amounts as $value) {
+            $sum->add($value->amount);
+        }
+
+        return $sum;
     }
 }

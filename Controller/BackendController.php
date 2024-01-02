@@ -14,8 +14,16 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Controller;
 
+use Modules\Admin\Models\LocalizationMapper;
+use Modules\Admin\Models\SettingsEnum;
 use Modules\InvestmentManagement\Models\InvestmentMapper;
+use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
+use Modules\InvestmentManagement\Models\InvestmentTypeMapper;
+use Modules\Media\Models\MediaMapper;
+use Modules\Media\Models\MediaTypeMapper;
+use Modules\Organization\Models\UnitMapper;
 use phpOMS\Contract\RenderableInterface;
+use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -31,7 +39,7 @@ use phpOMS\Views\View;
 final class BackendController extends Controller
 {
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -59,7 +67,7 @@ final class BackendController extends Controller
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response
@@ -70,17 +78,105 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewInvestmentSingle(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewInvestmentObjectProfile(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-create');
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-object-profile');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
+
+        $object = InvestmentObjectMapper::get()
+            ->with('files')
+            ->with('notes')
+            ->with('amountGroups')
+            ->with('amountGroups/type')
+            ->with('amountGroups/amounts')
+            ->where('id', (int) $request->getData('id'))
+            ->execute();
+
+        $view->data['object'] = $object;
+
+        /** @var \Model\Setting $settings */
+        $settings = $this->app->appSettings->get(null, [
+            SettingsEnum::DEFAULT_LOCALIZATION,
+        ]);
+
+        $view->data['attributeView']                              = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
+        $view->data['attributeView']->data['defaultlocalization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
+
+        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
         return $view;
     }
 
     /**
-     * Routing end-point for application behaviour.
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewInvestmentProfile(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-profile');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
+
+        $investment = InvestmentMapper::get()
+            ->with('notes')
+            ->with('files')
+            ->with('supplier')
+            ->with('supplier/account')
+            ->with('item')
+            ->with('createdBy')
+            ->with('options')
+            ->with('options/files')
+            ->with('options/notes')
+            ->with('options/amountGroups')
+            ->with('options/amountGroups/type')
+            ->with('options/amountGroups/amounts')
+            ->with('options/attributes')
+            ->with('options/attributes/type')
+            ->with('options/attributes/type/l11n')
+            ->with('options/attributes/value')
+            ->where('id', (int) $request->getData('id'))
+            ->where('options/attributes/type/l11n/language', $response->header->l11n->language)
+            ->execute();
+
+        $view->data['investment'] = $investment;
+
+        /** @var \Model\Setting $settings */
+        $settings = $this->app->appSettings->get(null, [
+            SettingsEnum::DEFAULT_LOCALIZATION,
+        ]);
+
+        $view->data['attributeView']                              = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
+        $view->data['attributeView']->data['defaultlocalization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
+
+        $investmentTypes = InvestmentTypeMapper::getAll()
+            ->with('l11n')
+            ->where('l11n/language', $response->header->l11n->language)
+            ->execute();
+
+        $view->data['types'] = $investmentTypes;
+
+        $units = UnitMapper::getAll()
+            ->execute();
+
+        $view->data['units'] = $units;
+
+        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
+        $view->data['note'] = new \Modules\Editor\Theme\Backend\Components\Note\BaseView($this->app->l11nManager, $request, $response);
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
      *
      * @param RequestAbstract  $request  Request
      * @param ResponseAbstract $response Response

@@ -43,7 +43,6 @@ final class InvestmentMapper extends DataMapperFactory
         'investmgmt_investment_name'                          => ['name' => 'investmgmt_investment_name',      'type' => 'string',   'internal' => 'name'],
         'investmgmt_investment_description'                   => ['name' => 'investmgmt_investment_description',       'type' => 'string',   'internal' => 'description'],
         'investmgmt_investment_status'                        => ['name' => 'investmgmt_investment_status',      'type' => 'int',   'internal' => 'status'],
-        'investmgmt_investment_depreciation_type'             => ['name' => 'investmgmt_investment_depreciation_type',      'type' => 'int',   'internal' => 'depreciationType'],
         'investmgmt_investment_unit'                          => ['name' => 'investmgmt_investment_unit',      'type' => 'int',   'internal' => 'unit'],
         'investmgmt_investment_created_by'                    => ['name' => 'investmgmt_investment_created_by', 'type' => 'int',      'internal' => 'createdBy', 'readonly' => true],
         'investmgmt_investment_performance'                   => ['name' => 'investmgmt_investment_performance', 'type' => 'DateTime', 'internal' => 'performanceDate'],
@@ -84,8 +83,8 @@ final class InvestmentMapper extends DataMapperFactory
         ],
         'options' => [
             'mapper'   => InvestmentObjectMapper::class,
-            'table'    => 'investmgmt_investment_option',
-            'self'     => 'investmgmt_investment_option_investment',
+            'table'    => 'investmgmt_option',
+            'self'     => 'investmgmt_option_investment',
             'external' => null,
         ],
     ];

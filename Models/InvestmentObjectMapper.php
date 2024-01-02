@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\InvestmentManagement\Models;
 
 use Modules\Editor\Models\EditorDocMapper;
+use Modules\InvestmentManagement\Models\Attribute\InvestmentObjectAttributeMapper;
 use Modules\ItemManagement\Models\ItemMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\SupplierManagement\Models\SupplierMapper;
@@ -91,6 +92,12 @@ final class InvestmentObjectMapper extends DataMapperFactory
             'mapper'   => AmountGroupMapper::class,
             'table'    => 'investmgmt_amount_group',
             'self'     => 'investmgmt_amount_group_option',
+            'external' => null,
+        ],
+        'attributes' => [
+            'mapper'   => InvestmentObjectAttributeMapper::class,
+            'table'    => 'investmgmt_option_attr',
+            'self'     => 'investmgmt_option_attr_item',
             'external' => null,
         ],
     ];

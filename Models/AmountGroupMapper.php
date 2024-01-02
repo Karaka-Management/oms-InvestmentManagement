@@ -63,7 +63,7 @@ final class AmountGroupMapper extends DataMapperFactory
      */
     public const HAS_MANY = [
         'amounts' => [
-            'mapper'   => self::class,
+            'mapper'   => AmountMapper::class,
             'table'    => 'investmgmt_amount',
             'self'     => 'investmgmt_amount_group',
             'external' => null,

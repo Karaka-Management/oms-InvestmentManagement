@@ -14,6 +14,9 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Models;
 
+use Modules\ItemManagement\Models\Item;
+use Modules\SupplierManagement\Models\Supplier;
+
 /**
  * Investment object.
  *
@@ -30,7 +33,7 @@ class InvestmentObject
 
     public string $description = '';
 
-    public ?int $supplier = null;
+    public ?Supplier $supplier = null;
 
     public string $supplierName = '';
 
@@ -38,6 +41,9 @@ class InvestmentObject
 
     /**
      * Costs / Revenue
+     *
+     * @var AmountGroup[]
+     * @since 1.0.0
      */
     public array $amountGroups = [];
 
@@ -49,8 +55,20 @@ class InvestmentObject
 
     public int $investment = 0;
 
-    public ?int $item = null;
+    public ?Item $item = null;
+
+    public function getAmountByTypeName(string $type) : AmountGroup
+    {
+        foreach ($this->amountGroups as $group) {
+            if ($group->type->title === $type) {
+                return $group;
+            }
+        }
+
+        return new NullAmountGroup();
+    }
 
     use \Modules\Media\Models\MediaListTrait;
     use \Modules\Editor\Models\EditorDocListTrait;
+    use \Modules\Attribute\Models\AttributeHolderTrait;
 }
