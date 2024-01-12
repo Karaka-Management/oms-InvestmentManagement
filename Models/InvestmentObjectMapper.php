@@ -97,7 +97,7 @@ final class InvestmentObjectMapper extends DataMapperFactory
         'attributes' => [
             'mapper'   => InvestmentObjectAttributeMapper::class,
             'table'    => 'investmgmt_option_attr',
-            'self'     => 'investmgmt_option_attr_item',
+            'self'     => 'investmgmt_option_attr_type',
             'external' => null,
         ],
     ];

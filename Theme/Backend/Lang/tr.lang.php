@@ -13,10 +13,6 @@
 declare(strict_types=1);
 
 return ['InvestmentManagement' => [
-    ':status1'    => '',
-    ':status2'    => '',
-    ':status3'    => '',
-    ':status4'    => '',
     'Creator'     => '',
     'Investment'  => '',
     'Investments' => '',

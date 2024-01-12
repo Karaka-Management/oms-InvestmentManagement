@@ -42,6 +42,7 @@ final class InvestmentObjectAttributeTypeMapper extends DataMapperFactory
         'investmgmt_attr_type_datatype'   => ['name' => 'investmgmt_attr_type_datatype',   'type' => 'int',    'internal' => 'datatype'],
         'investmgmt_attr_type_fields'     => ['name' => 'investmgmt_attr_type_fields',   'type' => 'int',    'internal' => 'fields'],
         'investmgmt_attr_type_custom'     => ['name' => 'investmgmt_attr_type_custom',   'type' => 'bool',   'internal' => 'custom'],
+        'investmgmt_attr_type_repeatable'     => ['name' => 'investmgmt_attr_type_repeatable',   'type' => 'bool',   'internal' => 'repeatable'],
         'investmgmt_attr_type_pattern'    => ['name' => 'investmgmt_attr_type_pattern',  'type' => 'string', 'internal' => 'validationPattern'],
         'investmgmt_attr_type_required'   => ['name' => 'investmgmt_attr_type_required', 'type' => 'bool',   'internal' => 'isRequired'],
     ];

@@ -96,12 +96,10 @@ final class BackendController extends Controller
         $view->data['object'] = $object;
 
         /** @var \Model\Setting $settings */
-        $settings = $this->app->appSettings->get(null, [
-            SettingsEnum::DEFAULT_LOCALIZATION,
-        ]);
+        $settings = $this->app->appSettings->get(null, SettingsEnum::DEFAULT_LOCALIZATION);
 
         $view->data['attributeView']                              = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
-        $view->data['attributeView']->data['defaultlocalization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
+        $view->data['attributeView']->data['default_localization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
 
         $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
@@ -129,11 +127,11 @@ final class BackendController extends Controller
         $investment = InvestmentMapper::get()
             ->with('notes')
             ->with('files')
-            ->with('supplier')
-            ->with('supplier/account')
-            ->with('item')
             ->with('createdBy')
             ->with('options')
+            ->with('options/supplier')
+            ->with('options/supplier/account')
+            ->with('options/item')
             ->with('options/files')
             ->with('options/notes')
             ->with('options/amountGroups')
@@ -144,18 +142,16 @@ final class BackendController extends Controller
             ->with('options/attributes/type/l11n')
             ->with('options/attributes/value')
             ->where('id', (int) $request->getData('id'))
-            ->where('options/attributes/type/l11n/language', $response->header->l11n->language)
+            //->where('options/attributes/type/l11n/language', $response->header->l11n->language)
             ->execute();
 
         $view->data['investment'] = $investment;
 
         /** @var \Model\Setting $settings */
-        $settings = $this->app->appSettings->get(null, [
-            SettingsEnum::DEFAULT_LOCALIZATION,
-        ]);
+        $settings = $this->app->appSettings->get(null, SettingsEnum::DEFAULT_LOCALIZATION);
 
         $view->data['attributeView']                              = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
-        $view->data['attributeView']->data['defaultlocalization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
+        $view->data['attributeView']->data['default_localization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
 
         $investmentTypes = InvestmentTypeMapper::getAll()
             ->with('l11n')

@@ -258,6 +258,11 @@
                 "type": "TINYINT(1)",
                 "null": false
             },
+            "investmgmt_attr_type_repeatable": {
+                "name": "investmgmt_attr_type_repeatable",
+                "type": "TINYINT(1)",
+                "null": false
+            },
             "investmgmt_attr_type_required": {
                 "description": "Every item must have this attribute type if set to true.",
                 "name": "investmgmt_attr_type_required",
