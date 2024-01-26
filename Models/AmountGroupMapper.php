@@ -36,10 +36,10 @@ final class AmountGroupMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_amount_group_id'                 => ['name' => 'investmgmt_amount_group_id',         'type' => 'int',      'internal' => 'id'],
-        'investmgmt_amount_group_name'               => ['name' => 'investmgmt_amount_group_name',      'type' => 'string',   'internal' => 'name'],
-        'investmgmt_amount_group_type'               => ['name' => 'investmgmt_amount_group_type',      'type' => 'int',   'internal' => 'type'],
-        'investmgmt_amount_group_option'             => ['name' => 'investmgmt_amount_group_option',      'type' => 'int',   'internal' => 'option'],
+        'investmgmt_amount_group_id'     => ['name' => 'investmgmt_amount_group_id',         'type' => 'int',      'internal' => 'id'],
+        'investmgmt_amount_group_name'   => ['name' => 'investmgmt_amount_group_name',      'type' => 'string',   'internal' => 'name'],
+        'investmgmt_amount_group_type'   => ['name' => 'investmgmt_amount_group_type',      'type' => 'int',   'internal' => 'type'],
+        'investmgmt_amount_group_option' => ['name' => 'investmgmt_amount_group_option',      'type' => 'int',   'internal' => 'option'],
     ];
 
     /**
@@ -49,9 +49,9 @@ final class AmountGroupMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const OWNS_ONE = [
-        'type'  => [
-            'mapper'     => AmountTypeMapper::class,
-            'external'   => 'investmgmt_amount_group_type',
+        'type' => [
+            'mapper'   => AmountTypeMapper::class,
+            'external' => 'investmgmt_amount_group_type',
         ],
     ];
 

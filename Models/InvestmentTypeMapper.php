@@ -37,8 +37,8 @@ final class InvestmentTypeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_investment_type_id'         => ['name' => 'investmgmt_investment_type_id',       'type' => 'int',    'internal' => 'id'],
-        'investmgmt_investment_type_name'       => ['name' => 'investmgmt_investment_type_name',     'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
+        'investmgmt_investment_type_id'   => ['name' => 'investmgmt_investment_type_id',       'type' => 'int',    'internal' => 'id'],
+        'investmgmt_investment_type_name' => ['name' => 'investmgmt_investment_type_name',     'type' => 'string', 'internal' => 'title', 'autocomplete' => true],
 
     ];
 

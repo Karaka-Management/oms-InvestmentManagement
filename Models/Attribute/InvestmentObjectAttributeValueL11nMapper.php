@@ -37,10 +37,10 @@ final class InvestmentObjectAttributeValueL11nMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_attr_value_l11n_id'     => ['name' => 'investmgmt_attr_value_l11n_id',    'type' => 'int',    'internal' => 'id'],
-        'investmgmt_attr_value_l11n_title'  => ['name' => 'investmgmt_attr_value_l11n_title', 'type' => 'string', 'internal' => 'content', 'autocomplete' => true],
-        'investmgmt_attr_value_l11n_value'  => ['name' => 'investmgmt_attr_value_l11n_value',  'type' => 'int',    'internal' => 'ref'],
-        'investmgmt_attr_value_l11n_lang'   => ['name' => 'investmgmt_attr_value_l11n_lang',  'type' => 'string', 'internal' => 'language'],
+        'investmgmt_attr_value_l11n_id'    => ['name' => 'investmgmt_attr_value_l11n_id',    'type' => 'int',    'internal' => 'id'],
+        'investmgmt_attr_value_l11n_title' => ['name' => 'investmgmt_attr_value_l11n_title', 'type' => 'string', 'internal' => 'content', 'autocomplete' => true],
+        'investmgmt_attr_value_l11n_value' => ['name' => 'investmgmt_attr_value_l11n_value',  'type' => 'int',    'internal' => 'ref'],
+        'investmgmt_attr_value_l11n_lang'  => ['name' => 'investmgmt_attr_value_l11n_lang',  'type' => 'string', 'internal' => 'language'],
     ];
 
     /**

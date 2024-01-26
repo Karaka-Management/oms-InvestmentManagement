@@ -99,7 +99,7 @@ final class ApiController extends Controller
         $investment                  = new Investment();
         $investment->name            = $request->getDataString('name') ?? '';
         $investment->description     = $request->getDataString('description') ?? '';
-        $investment->status          = $request->getDataInt('status') ?? InvestmentStatus::DRAFT;
+        $investment->status          = InvestmentStatus::tryFromValue($request->getDataInt('status')) ?? InvestmentStatus::DRAFT;
         $investment->description     = $request->getDataString('description') ?? '';
         $investment->unit            = $request->getDataInt('unit') ?? $this->app->unitId;
         $investment->createdBy       = new NullAccount($request->header->account);
@@ -814,7 +814,10 @@ final class ApiController extends Controller
     {
         $type        = new BaseStringL11nType();
         $type->title = $request->getDataString('name') ?? '';
-        $type->setL11n($request->getDataString('title') ?? '', $request->getDataString('language') ?? ISO639x1Enum::_EN);
+        $type->setL11n(
+            $request->getDataString('title') ?? '',
+            ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? ISO639x1Enum::_EN
+        );
 
         return $type;
     }
@@ -878,12 +881,10 @@ final class ApiController extends Controller
      */
     private function createAmountTypeL11nFromRequest(RequestAbstract $request) : BaseStringL11n
     {
-        $typeL11n      = new BaseStringL11n();
-        $typeL11n->ref = $request->getDataInt('type') ?? 0;
-        $typeL11n->setLanguage(
-            $request->getDataString('language') ?? $request->header->l11n->language
-        );
-        $typeL11n->content = $request->getDataString('title') ?? '';
+        $typeL11n           = new BaseStringL11n();
+        $typeL11n->ref      = $request->getDataInt('type') ?? 0;
+        $typeL11n->language = ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $request->header->l11n->language;
+        $typeL11n->content  = $request->getDataString('title') ?? '';
 
         return $typeL11n;
     }

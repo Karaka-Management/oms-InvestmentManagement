@@ -16,7 +16,6 @@ namespace Modules\InvestmentManagement\Models;
 
 use Modules\Admin\Models\Account;
 use Modules\Admin\Models\NullAccount;
-use phpOMS\Business\Finance\DepreciationType;
 use phpOMS\Localization\BaseStringL11nType;
 
 /**

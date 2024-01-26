@@ -14,16 +14,11 @@ declare(strict_types=1);
 
 namespace Modules\InvestmentManagement\Controller;
 
-use Modules\Admin\Models\LocalizationMapper;
-use Modules\Admin\Models\SettingsEnum;
 use Modules\InvestmentManagement\Models\InvestmentMapper;
 use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
 use Modules\InvestmentManagement\Models\InvestmentTypeMapper;
-use Modules\Media\Models\MediaMapper;
-use Modules\Media\Models\MediaTypeMapper;
 use Modules\Organization\Models\UnitMapper;
 use phpOMS\Contract\RenderableInterface;
-use phpOMS\DataStorage\Database\Query\Builder;
 use phpOMS\Message\RequestAbstract;
 use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
@@ -78,10 +73,10 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewInvestmentObjectProfile(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewInvestmentObjectView(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-object-profile');
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-object-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
 
         $object = InvestmentObjectMapper::get()
@@ -95,11 +90,8 @@ final class BackendController extends Controller
 
         $view->data['object'] = $object;
 
-        /** @var \Model\Setting $settings */
-        $settings = $this->app->appSettings->get(null, SettingsEnum::DEFAULT_LOCALIZATION);
-
-        $view->data['attributeView']                              = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
-        $view->data['attributeView']->data['default_localization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
+        $view->data['attributeView']                               = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
+        $view->data['attributeView']->data['default_localization'] = $this->app->l11nServer;
 
         $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
@@ -118,10 +110,10 @@ final class BackendController extends Controller
      * @since 1.0.0
      * @codeCoverageIgnore
      */
-    public function viewInvestmentProfile(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    public function viewInvestmentView(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-profile');
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
 
         $investment = InvestmentMapper::get()
@@ -147,11 +139,8 @@ final class BackendController extends Controller
 
         $view->data['investment'] = $investment;
 
-        /** @var \Model\Setting $settings */
-        $settings = $this->app->appSettings->get(null, SettingsEnum::DEFAULT_LOCALIZATION);
-
-        $view->data['attributeView']                              = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
-        $view->data['attributeView']->data['default_localization'] = LocalizationMapper::get()->where('id', (int) $settings->id)->execute();
+        $view->data['attributeView']                               = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
+        $view->data['attributeView']->data['default_localization'] = $this->app->l11nServer;
 
         $investmentTypes = InvestmentTypeMapper::getAll()
             ->with('l11n')
@@ -166,7 +155,7 @@ final class BackendController extends Controller
         $view->data['units'] = $units;
 
         $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
-        $view->data['note'] = new \Modules\Editor\Theme\Backend\Components\Note\BaseView($this->app->l11nManager, $request, $response);
+        $view->data['note']         = new \Modules\Editor\Theme\Backend\Components\Note\BaseView($this->app->l11nManager, $request, $response);
 
         return $view;
     }

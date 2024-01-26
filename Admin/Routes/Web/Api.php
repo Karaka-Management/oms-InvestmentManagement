@@ -18,7 +18,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/finance/investment/find.*$' => [
+    '^.*/finance/investment/find(\?.*$|$)' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiInvestmentFind',
             'verb'       => RouteVerb::GET,

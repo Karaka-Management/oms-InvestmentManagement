@@ -37,15 +37,15 @@ final class InvestmentObjectAttributeValueMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_attr_value_id'                => ['name' => 'investmgmt_attr_value_id',       'type' => 'int',      'internal' => 'id'],
-        'investmgmt_attr_value_default'           => ['name' => 'investmgmt_attr_value_default',  'type' => 'bool',     'internal' => 'isDefault'],
-        'investmgmt_attr_value_valueStr'          => ['name' => 'investmgmt_attr_value_valueStr', 'type' => 'string',   'internal' => 'valueStr'],
-        'investmgmt_attr_value_valueInt'          => ['name' => 'investmgmt_attr_value_valueInt', 'type' => 'int',      'internal' => 'valueInt'],
-        'investmgmt_attr_value_valueDec'          => ['name' => 'investmgmt_attr_value_valueDec', 'type' => 'float',    'internal' => 'valueDec'],
-        'investmgmt_attr_value_valueDat'          => ['name' => 'investmgmt_attr_value_valueDat', 'type' => 'DateTime', 'internal' => 'valueDat'],
-        'investmgmt_attr_value_unit'              => ['name' => 'investmgmt_attr_value_unit', 'type' => 'string', 'internal' => 'unit'],
-        'investmgmt_attr_value_deptype'           => ['name' => 'investmgmt_attr_value_deptype', 'type' => 'int', 'internal' => 'dependingAttributeType'],
-        'investmgmt_attr_value_depvalue'          => ['name' => 'investmgmt_attr_value_depvalue', 'type' => 'int', 'internal' => 'dependingAttributeValue'],
+        'investmgmt_attr_value_id'       => ['name' => 'investmgmt_attr_value_id',       'type' => 'int',      'internal' => 'id'],
+        'investmgmt_attr_value_default'  => ['name' => 'investmgmt_attr_value_default',  'type' => 'bool',     'internal' => 'isDefault'],
+        'investmgmt_attr_value_valueStr' => ['name' => 'investmgmt_attr_value_valueStr', 'type' => 'string',   'internal' => 'valueStr'],
+        'investmgmt_attr_value_valueInt' => ['name' => 'investmgmt_attr_value_valueInt', 'type' => 'int',      'internal' => 'valueInt'],
+        'investmgmt_attr_value_valueDec' => ['name' => 'investmgmt_attr_value_valueDec', 'type' => 'float',    'internal' => 'valueDec'],
+        'investmgmt_attr_value_valueDat' => ['name' => 'investmgmt_attr_value_valueDat', 'type' => 'DateTime', 'internal' => 'valueDat'],
+        'investmgmt_attr_value_unit'     => ['name' => 'investmgmt_attr_value_unit', 'type' => 'string', 'internal' => 'unit'],
+        'investmgmt_attr_value_deptype'  => ['name' => 'investmgmt_attr_value_deptype', 'type' => 'int', 'internal' => 'dependingAttributeType'],
+        'investmgmt_attr_value_depvalue' => ['name' => 'investmgmt_attr_value_depvalue', 'type' => 'int', 'internal' => 'dependingAttributeValue'],
     ];
 
     /**

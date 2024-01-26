@@ -16,9 +16,9 @@ use Modules\InvestmentManagement\Models\InvestmentStatus;
 use phpOMS\Uri\UriFactory;
 
 /** @var \phpOMS\Views\View $this */
-$investment = $this->data['investment'] ?? null;
+$investment       = $this->data['investment'] ?? null;
 $investmentStatus = InvestmentStatus::getConstants();
-$files           = $investment->files;
+$files            = $investment->files;
 $investmentTypes  = $this->data['types'] ?? [];
 
 echo $this->data['nav']->render(); ?>
@@ -234,7 +234,7 @@ echo $this->data['nav']->render(); ?>
                             </div>
                         </div>
                         <div class="portlet-foot">
-                            <a class="button edit" href="<?= UriFactory::build('{/base}/finance/investment/object?id=' . $option->id) ?>"><?= $this->getHtml('Edit', '0', '0'); ?></a>
+                            <a class="button edit" href="<?= UriFactory::build('{/base}/finance/investment/object?id=' . $option->id); ?>"><?= $this->getHtml('Edit', '0', '0'); ?></a>
                         </div>
                     </section>
                 </div>

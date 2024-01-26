@@ -6,7 +6,7 @@ use phpOMS\Account\PermissionType;
 use phpOMS\Router\RouteVerb;
 
 return [
-    '^.*/finance/investment/list.*$' => [
+    '^.*/finance/investment/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentList',
             'verb'       => RouteVerb::GET,
@@ -17,9 +17,9 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/profile.*$' => [
+    '^.*/finance/investment/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentProfile',
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentView',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
@@ -28,7 +28,7 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/create.*$' => [
+    '^.*/finance/investment/create(\?.*$|$)' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentCreate',
             'verb'       => RouteVerb::GET,
@@ -39,9 +39,9 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/object.*$' => [
+    '^.*/finance/investment/object(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentObjectProfile',
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentObjectView',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
@@ -51,7 +51,7 @@ return [
         ],
     ],
 
-    '^.*/private/investment/list.*$' => [
+    '^.*/private/investment/list(\?.*$|$)' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentList',
             'verb'       => RouteVerb::GET,
@@ -62,9 +62,9 @@ return [
             ],
         ],
     ],
-    '^.*/private/investment/profile.*$' => [
+    '^.*/private/investment/view(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentProfile',
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentView',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,

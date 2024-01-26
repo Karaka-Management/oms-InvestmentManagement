@@ -17,8 +17,8 @@ use phpOMS\Localization\ISO639Enum;
 /** @var \phpOMS\Views\View $this */
 $object = $this->data['object'] ?? null;
 
-$attributeView     = $this->data['attributeView'];
-$languages = ISO639Enum::getConstants();
+$attributeView = $this->data['attributeView'];
+$languages     = ISO639Enum::getConstants();
 
 echo $this->data['nav']->render(); ?>
 <div class="tabview tab-2">

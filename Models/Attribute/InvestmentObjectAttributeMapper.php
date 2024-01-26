@@ -37,10 +37,10 @@ final class InvestmentObjectAttributeMapper extends DataMapperFactory
      * @since 1.0.0
      */
     public const COLUMNS = [
-        'investmgmt_option_attr_id'    => ['name' => 'investmgmt_option_attr_id',    'type' => 'int', 'internal' => 'id'],
-        'investmgmt_option_attr_option'  => ['name' => 'investmgmt_option_attr_option',  'type' => 'int', 'internal' => 'ref'],
-        'investmgmt_option_attr_type'  => ['name' => 'investmgmt_option_attr_type',  'type' => 'int', 'internal' => 'type'],
-        'investmgmt_option_attr_value' => ['name' => 'investmgmt_option_attr_value', 'type' => 'int', 'internal' => 'value'],
+        'investmgmt_option_attr_id'     => ['name' => 'investmgmt_option_attr_id',    'type' => 'int', 'internal' => 'id'],
+        'investmgmt_option_attr_option' => ['name' => 'investmgmt_option_attr_option',  'type' => 'int', 'internal' => 'ref'],
+        'investmgmt_option_attr_type'   => ['name' => 'investmgmt_option_attr_type',  'type' => 'int', 'internal' => 'type'],
+        'investmgmt_option_attr_value'  => ['name' => 'investmgmt_option_attr_value', 'type' => 'int', 'internal' => 'value'],
     ];
 
     /**
