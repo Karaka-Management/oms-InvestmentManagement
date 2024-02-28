@@ -73,7 +73,7 @@ final class Installer extends InstallerAbstract
         $amountTypes = [];
 
         /** @var \Modules\InvestmentManagement\Controller\ApiController $module */
-        $module = $app->moduleManager->getModuleInstance('InvestmentManagement', 'Api');
+        $module = $app->moduleManager->get('InvestmentManagement', 'Api');
 
         /** @var array $type */
         foreach ($types as $type) {

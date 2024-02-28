@@ -47,6 +47,10 @@ use phpOMS\Stdlib\Base\FloatInt;
  * @license OMS License 2.0
  * @link    https://jingga.app
  * @since   1.0.0
+ *
+ * @feature Comparison/calculations
+ *      Add calculation which compares investment options (costs, profit, break-even)
+ *      https://github.com/Karaka-Management/oms-InvestmentManagement/issues/1
  */
 final class ApiController extends Controller
 {

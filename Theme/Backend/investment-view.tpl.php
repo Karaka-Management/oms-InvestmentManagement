@@ -124,7 +124,7 @@ echo $this->data['nav']->render(); ?>
         </div>
 
         <input type="radio" id="c-tab-3" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-3' ? ' checked' : ''; ?>>
-        <div class="tab">
+        <div class="tab col-simple">
             <?= $this->data['note']->render('investment-notes', '', $investment->notes); ?>
         </div>
 
