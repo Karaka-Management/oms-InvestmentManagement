@@ -28,24 +28,35 @@ return [
             ],
         ],
     ],
+    '^.*/finance/investment/option/create(\?.*$|$)' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentOptionCreate',
+            'verb'       => RouteVerb::GET,
+            'permission' => [
+                'module' => BackendController::MODULE_NAME,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
+    '^.*/finance/investment/option/view(\?.*$|$)' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentOptionView',
+            'verb'       => RouteVerb::GET,
+            'permission' => [
+                'module' => BackendController::MODULE_NAME,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
     '^.*/finance/investment/create(\?.*$|$)' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentCreate',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
-                'type'   => PermissionType::READ,
-                'state'  => PermissionCategory::INVESTMENT,
-            ],
-        ],
-    ],
-    '^.*/finance/investment/object(\?.*$|$)' => [
-        [
-            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentObjectView',
-            'verb'       => RouteVerb::GET,
-            'permission' => [
-                'module' => BackendController::MODULE_NAME,
-                'type'   => PermissionType::READ,
+                'type'   => PermissionType::CREATE,
                 'state'  => PermissionCategory::INVESTMENT,
             ],
         ],

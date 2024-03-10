@@ -15,7 +15,6 @@ declare(strict_types=1);
 namespace Modules\InvestmentManagement\Controller;
 
 use Modules\InvestmentManagement\Models\InvestmentMapper;
-use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
 use Modules\InvestmentManagement\Models\InvestmentTypeMapper;
 use Modules\Organization\Models\UnitMapper;
 use phpOMS\Contract\RenderableInterface;
@@ -24,7 +23,7 @@ use phpOMS\Message\ResponseAbstract;
 use phpOMS\Views\View;
 
 /**
- * Investmenting controller class.
+ * Investment controller class.
  *
  * @package Modules\InvestmentManagement
  * @license OMS License 2.0
@@ -57,43 +56,6 @@ final class BackendController extends Controller
             ->execute();
 
         $view->data['investments'] = $list;
-
-        return $view;
-    }
-
-    /**
-     * Routing end-point for application behavior.
-     *
-     * @param RequestAbstract  $request  Request
-     * @param ResponseAbstract $response Response
-     * @param array            $data     Generic data
-     *
-     * @return RenderableInterface
-     *
-     * @since 1.0.0
-     * @codeCoverageIgnore
-     */
-    public function viewInvestmentObjectView(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
-    {
-        $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-object-view');
-        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
-
-        $object = InvestmentObjectMapper::get()
-            ->with('files')
-            ->with('notes')
-            ->with('amountGroups')
-            ->with('amountGroups/type')
-            ->with('amountGroups/amounts')
-            ->where('id', (int) $request->getData('id'))
-            ->execute();
-
-        $view->data['object'] = $object;
-
-        $view->data['attributeView']                               = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
-        $view->data['attributeView']->data['default_localization'] = $this->app->l11nServer;
-
-        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
 
         return $view;
     }
@@ -176,6 +138,48 @@ final class BackendController extends Controller
     {
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-create');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewInvestmentOptionCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-option-view');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewInvestmentOptionView(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-option-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
 
         return $view;

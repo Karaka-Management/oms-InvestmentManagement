@@ -131,6 +131,10 @@ echo $this->data['nav']->render(); ?>
         <input type="radio" id="c-tab-4" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-4' ? ' checked' : ''; ?>>
         <div class="tab">
             <div class="row">
+                <a class="button" href="<?= UriFactory::build('{/base}/finance/investment/option/create?investment=' . $investment->id); ?>"><?= $this->getHtml('Create', '0', '0'); ?></a>
+            </div>
+
+            <div class="row">
                 <?php
                 $count = 0;
                 foreach ($investment->options as $option) :
@@ -234,7 +238,7 @@ echo $this->data['nav']->render(); ?>
                             </div>
                         </div>
                         <div class="portlet-foot">
-                            <a class="button edit" href="<?= UriFactory::build('{/base}/finance/investment/object?id=' . $option->id); ?>"><?= $this->getHtml('Edit', '0', '0'); ?></a>
+                            <a class="button edit" href="<?= UriFactory::build('{/base}/finance/investment/option/view?id=' . $option->id); ?>"><?= $this->getHtml('Edit', '0', '0'); ?></a>
                         </div>
                     </section>
                 </div>

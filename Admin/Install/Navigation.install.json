@@ -8,7 +8,7 @@
         "uri": "{/base}/finance/investment/list?{?}",
         "target": "self",
         "icon": null,
-        "order": 1,
+        "order": 5,
         "from": "InvestmentManagement",
         "permission": { "permission": 2, "type": null, "element": null },
         "parent": 1008101001,
