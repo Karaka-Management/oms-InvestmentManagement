@@ -57,6 +57,15 @@ class InvestmentObject
 
     public ?Item $item = null;
 
+    /**
+     * Get amount group by type name
+     *
+     * @param string $type Type name
+     *
+     * @return AmountGroup
+     *
+     * @since 1.0.0
+     */
     public function getAmountByTypeName(string $type) : AmountGroup
     {
         foreach ($this->amountGroups as $group) {

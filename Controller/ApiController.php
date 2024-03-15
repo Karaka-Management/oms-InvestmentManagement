@@ -24,12 +24,14 @@ use Modules\InvestmentManagement\Models\InvestmentMapper;
 use Modules\InvestmentManagement\Models\InvestmentObject;
 use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
 use Modules\InvestmentManagement\Models\InvestmentStatus;
+use Modules\ItemManagement\Models\NullItem;
 use Modules\Media\Models\CollectionMapper;
 use Modules\Media\Models\MediaMapper;
 use Modules\Media\Models\NullMedia;
 use Modules\Media\Models\PathSettings;
 use Modules\Media\Models\Reference;
 use Modules\Media\Models\ReferenceMapper;
+use Modules\SupplierManagement\Models\NullSupplier;
 use phpOMS\Localization\BaseStringL11n;
 use phpOMS\Localization\BaseStringL11nType;
 use phpOMS\Localization\ISO639x1Enum;
@@ -478,9 +480,9 @@ final class ApiController extends Controller
         $investment->link         = $request->getDataString('link') ?? '';
         $investment->investment   = (int) $request->getData('investment');
         $investment->parent       = $request->getDataInt('parent');
-        $investment->supplier     = $request->getDataInt('supplier');
+        $investment->supplier     = $request->hasData('supplier') ? new NullSupplier((int) $request->getData('supplier')) : null;
         $investment->supplierName = $request->getDataString('suppliername') ?? '';
-        $investment->item         = $request->getDataInt('item');
+        $investment->item         = $request->hasData('item') ? new NullItem((int) $request->getData('item')) : null;
 
         // @todo reconsider the following lines. This seems rather complicated.
         if ($request->hasData('amount')) {
@@ -585,7 +587,6 @@ final class ApiController extends Controller
                 virtualPath: $path,
                 pathSettings: PathSettings::FILE_PATH
             );
-
 
             foreach ($uploaded as $media) {
                 $this->createModelRelation(

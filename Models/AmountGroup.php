@@ -53,6 +53,13 @@ class AmountGroup
         $this->type = new BaseStringL11nType();
     }
 
+    /**
+     * Get sum of group
+     *
+     * @return FloatInt
+     *
+     * @since 1.0.0
+     */
     public function sum() : FloatInt
     {
         $sum = new FloatInt();
