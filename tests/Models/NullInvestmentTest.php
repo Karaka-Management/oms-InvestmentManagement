@@ -22,7 +22,7 @@ use Modules\InvestmentManagement\Models\NullInvestment;
 final class NullInvestmentTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @covers Modules\InvestmentManagement\Models\NullInvestment
+     * @covers \Modules\InvestmentManagement\Models\NullInvestment
      * @group module
      */
     public function testNull() : void
@@ -31,7 +31,7 @@ final class NullInvestmentTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\InvestmentManagement\Models\NullInvestment
+     * @covers \Modules\InvestmentManagement\Models\NullInvestment
      * @group module
      */
     public function testId() : void
@@ -41,7 +41,7 @@ final class NullInvestmentTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @covers Modules\InvestmentManagement\Models\NullInvestment
+     * @covers \Modules\InvestmentManagement\Models\NullInvestment
      * @group module
      */
     public function testJsonSerialize() : void
