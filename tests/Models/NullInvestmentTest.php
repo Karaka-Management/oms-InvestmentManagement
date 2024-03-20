@@ -19,31 +19,23 @@ use Modules\InvestmentManagement\Models\NullInvestment;
 /**
  * @internal
  */
+#[\PHPUnit\Framework\Attributes\CoversClass(\Modules\InvestmentManagement\Models\NullInvestment::class)]
 final class NullInvestmentTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @covers \Modules\InvestmentManagement\Models\NullInvestment
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testNull() : void
     {
         self::assertInstanceOf('\Modules\InvestmentManagement\Models\Investment', new NullInvestment());
     }
 
-    /**
-     * @covers \Modules\InvestmentManagement\Models\NullInvestment
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testId() : void
     {
         $null = new NullInvestment(2);
         self::assertEquals(2, $null->id);
     }
 
-    /**
-     * @covers \Modules\InvestmentManagement\Models\NullInvestment
-     * @group module
-     */
+    #[\PHPUnit\Framework\Attributes\Group('module')]
     public function testJsonSerialize() : void
     {
         $null = new NullInvestment(2);
