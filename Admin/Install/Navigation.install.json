@@ -58,6 +58,37 @@
         "from": "InvestmentManagement",
         "permission": { "permission": 2, "category": null, "element": null },
         "parent": 1003401001,
-        "children": []
+        "children": [
+            {
+                "id": 1007104001,
+                "pid": "/private/investment",
+                "type": 3,
+                "subtype": 1,
+                "name": "List",
+                "uri": "{/base}/private/investment/list?{?}",
+                "target": "self",
+                "icon": null,
+                "order": 1,
+                "from": "InvestmentManagement",
+                "permission": { "permission": 2, "type": null, "element": null },
+                "parent": 1007103001,
+                "children": []
+            },
+            {
+                "id": 1007104002,
+                "pid": "/private/investment",
+                "type": 3,
+                "subtype": 1,
+                "name": "Create",
+                "uri": "{/base}/private/investment/create?{?}",
+                "target": "self",
+                "icon": null,
+                "order": 5,
+                "from": "InvestmentManagement",
+                "permission": { "permission": 2, "type": null, "element": null },
+                "parent": 1007103001,
+                "children": []
+            }
+        ]
     }
 ]

@@ -64,7 +64,7 @@ class Investment
     {
         $this->createdBy       = new NullAccount();
         $this->createdAt       = new \DateTimeImmutable('now');
-        $this->performanceDate = new \DateTime('now');
+        $this->performanceDate = (new \DateTime('now'))->modify('+7 days');
     }
 
     use \Modules\Media\Models\MediaListTrait;

@@ -64,11 +64,22 @@ return [
 
     '^/private/investment/list(\?.*$|$)' => [
         [
-            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentList',
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentPrivateList',
             'verb'       => RouteVerb::GET,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::READ,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
+    '^/private/investment/create(\?.*$|$)' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentPrivateCreate',
+            'verb'       => RouteVerb::GET,
+            'permission' => [
+                'module' => BackendController::MODULE_NAME,
+                'type'   => PermissionType::CREATE,
                 'state'  => PermissionCategory::INVESTMENT,
             ],
         ],

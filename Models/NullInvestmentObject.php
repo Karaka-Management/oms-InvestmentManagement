@@ -22,7 +22,7 @@ namespace Modules\InvestmentManagement\Models;
  * @link    https://jingga.app
  * @since   1.0.0
  */
-final class NullInvestment extends Investment
+final class NullInvestmentObject extends InvestmentObject
 {
     /**
      * Constructor
@@ -34,7 +34,6 @@ final class NullInvestment extends Investment
     public function __construct(int $id = 0)
     {
         $this->id = $id;
-        parent::__construct();
     }
 
     /**

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace Modules\InvestmentManagement\Controller;
 
 use Modules\InvestmentManagement\Models\InvestmentMapper;
+use Modules\InvestmentManagement\Models\InvestmentObjectMapper;
 use Modules\InvestmentManagement\Models\InvestmentTypeMapper;
 use Modules\Organization\Models\UnitMapper;
 use phpOMS\Contract\RenderableInterface;
@@ -53,9 +54,58 @@ final class BackendController extends Controller
         $list = InvestmentMapper::getAll()
             ->with('createdBy')
             ->sort('id', 'DESC')
-            ->execute();
+            ->executeGetArray();
 
         $view->data['investments'] = $list;
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewInvestmentPrivateList(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-list');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007103001, $request, $response);
+
+        $list = InvestmentMapper::getAll()
+            ->with('createdBy')
+            ->sort('id', 'DESC')
+            ->executeGetArray();
+
+        $view->data['investments'] = $list;
+
+        return $view;
+    }
+
+    /**
+     * Routing end-point for application behavior.
+     *
+     * @param RequestAbstract  $request  Request
+     * @param ResponseAbstract $response Response
+     * @param array            $data     Generic data
+     *
+     * @return RenderableInterface
+     *
+     * @since 1.0.0
+     * @codeCoverageIgnore
+     */
+    public function viewInvestmentPrivateCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
+    {
+        $view = new View($this->app->l11nManager, $request, $response);
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-view');
+        $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007103001, $request, $response);
 
         return $view;
     }
@@ -104,17 +154,13 @@ final class BackendController extends Controller
         $view->data['attributeView']                               = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
         $view->data['attributeView']->data['default_localization'] = $this->app->l11nServer;
 
-        $investmentTypes = InvestmentTypeMapper::getAll()
+        $view->data['types'] = InvestmentTypeMapper::getAll()
             ->with('l11n')
             ->where('l11n/language', $response->header->l11n->language)
-            ->execute();
+            ->executeGetArray();
 
-        $view->data['types'] = $investmentTypes;
-
-        $units = UnitMapper::getAll()
-            ->execute();
-
-        $view->data['units'] = $units;
+        $view->data['units'] = UnitMapper::getAll()
+            ->executeGetArray();
 
         $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
         $view->data['note']         = new \Modules\Editor\Theme\Backend\Components\Note\BaseView($this->app->l11nManager, $request, $response);
@@ -137,7 +183,7 @@ final class BackendController extends Controller
     public function viewInvestmentCreate(RequestAbstract $request, ResponseAbstract $response, $data = null) : RenderableInterface
     {
         $view = new View($this->app->l11nManager, $request, $response);
-        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-create');
+        $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
 
         return $view;
@@ -181,6 +227,31 @@ final class BackendController extends Controller
         $view = new View($this->app->l11nManager, $request, $response);
         $view->setTemplate('/Modules/InvestmentManagement/Theme/Backend/investment-option-view');
         $view->data['nav'] = $this->app->moduleManager->get('Navigation')->createNavigationMid(1007101001, $request, $response);
+
+        $view->data['option'] = InvestmentObjectMapper::get()
+            ->with('supplier')
+            ->with('supplier/account')
+            ->with('item')
+            ->with('files')
+            ->with('notes')
+            ->with('amountGroups')
+            ->with('amountGroups/type')
+            ->with('amountGroups/amounts')
+            ->with('attributes')
+            ->with('attributes/type')
+            ->with('attributes/type/l11n')
+            ->with('attributes/value')
+            ->where('id', (int) $request->getData('id'))
+            ->execute();
+
+        $view->data['attributeView']                               = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);
+        $view->data['attributeView']->data['default_localization'] = $this->app->l11nServer;
+
+        $view->data['units'] = UnitMapper::getAll()
+            ->executeGetArray();
+
+        $view->data['media-upload'] = new \Modules\Media\Theme\Backend\Components\Upload\BaseView($this->app->l11nManager, $request, $response);
+        $view->data['note']         = new \Modules\Editor\Theme\Backend\Components\Note\BaseView($this->app->l11nManager, $request, $response);
 
         return $view;
     }

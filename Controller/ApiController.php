@@ -487,7 +487,7 @@ final class ApiController extends Controller
         // @todo reconsider the following lines. This seems rather complicated.
         if ($request->hasData('amount')) {
             /** @var BaseStringL11nType[] $types */
-            $types = AmountTypeMapper::getAll()->execute();
+            $types = AmountTypeMapper::getAll()->executeGetArray();
 
             foreach ($types as $type) {
                 if ($type->title === 'costs') {

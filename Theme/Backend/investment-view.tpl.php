@@ -13,30 +13,37 @@
 declare(strict_types=1);
 
 use Modules\InvestmentManagement\Models\InvestmentStatus;
+use Modules\InvestmentManagement\Models\NullInvestment;
 use phpOMS\Uri\UriFactory;
 
 /** @var \phpOMS\Views\View $this */
-$investment       = $this->data['investment'] ?? null;
+$investment       = $this->data['investment'] ?? new NullInvestment();
 $investmentStatus = InvestmentStatus::getConstants();
 $files            = $investment->files;
 $investmentTypes  = $this->data['types'] ?? [];
 
+$isNew = $investment->id === 0;
+
 echo $this->data['nav']->render(); ?>
 <div class="tabview tab-2">
+    <?php if (!$isNew) : ?>
     <div class="box">
         <ul class="tab-links">
             <li><label for="c-tab-1"><?= $this->getHtml('Investment'); ?></label>
             <li><label for="c-tab-2"><?= $this->getHtml('Files'); ?></label>
             <li><label for="c-tab-3"><?= $this->getHtml('Notes'); ?></label>
             <li><label for="c-tab-4"><?= $this->getHtml('Options'); ?></label>
+
         </ul>
     </div>
+    <?php endif; ?>
     <div class="tab-content">
-        <input type="radio" id="c-tab-1" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-1' ? ' checked' : ''; ?>>
+        <input type="radio" id="c-tab-1" name="tabular-2"<?= $isNew || $this->request->uri->fragment === 'c-tab-1' ? ' checked' : ''; ?>>
         <div class="tab">
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <section class="portlet">
+                    <form id="fInvestment" method="<?= $isNew ? 'PUT' : 'POST'; ?>" action="<?= \phpOMS\Uri\UriFactory::build('{/api}finance/investment?{?}&csrf={$CSRF}'); ?>">
                         <div class="portlet-head"><?= $this->getHtml('Investment'); ?></div>
                         <div class="portlet-body">
                             <div class="form-group">
@@ -79,9 +86,11 @@ echo $this->data['nav']->render(); ?>
                                 <input id="iSaveSubmit" type="Submit" value="<?= $this->getHtml('Save', '0', '0'); ?>">
                             <?php endif; ?>
                         </div>
+                        </form>
                     </section>
                 </div>
 
+                <?php if (!$isNew) : ?>
                 <div class="col-xs-12 col-md-6">
                     <section class="portlet">
                         <div class="portlet-head">
@@ -115,9 +124,11 @@ echo $this->data['nav']->render(); ?>
                         </div>
                     </section>
                 </div>
+                <?php endif; ?>
             </div>
         </div>
 
+        <?php if (!$isNew) : ?>
         <input type="radio" id="c-tab-2" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-2' ? ' checked' : ''; ?>>
         <div class="tab col-simple">
             <?= $this->data['media-upload']->render('investment-file', 'files', '', $investment->files); ?>
@@ -245,6 +256,6 @@ echo $this->data['nav']->render(); ?>
                 <?php endforeach; ?>
             </div>
         </div>
-
+        <?php endif; ?>
     </div>
 </div>
