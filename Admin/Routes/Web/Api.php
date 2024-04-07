@@ -23,6 +23,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiInvestmentFind',
             'verb'       => RouteVerb::GET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -35,6 +36,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -45,6 +47,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -57,6 +60,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeTypeCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -67,6 +71,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeTypeUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -79,6 +84,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeTypeL11nCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -89,6 +95,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeTypeL11nUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -101,6 +108,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeValueCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -111,6 +119,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeValueUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -123,6 +132,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeValueL11nCreate',
             'verb'       => RouteVerb::PUT,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,
@@ -133,6 +143,7 @@ return [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeValueL11nUpdate',
             'verb'       => RouteVerb::SET,
             'csrf'       => true,
+            'active' => true,
             'permission' => [
                 'module' => ApiController::NAME,
                 'type'   => PermissionType::READ,

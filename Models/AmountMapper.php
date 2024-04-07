@@ -17,7 +17,7 @@ namespace Modules\InvestmentManagement\Models;
 use phpOMS\DataStorage\Database\Mapper\DataMapperFactory;
 
 /**
- * Mapper class.
+ * Amount mapper class.
  *
  * @package Modules\InvestmentManagement\Models
  * @license OMS License 2.0

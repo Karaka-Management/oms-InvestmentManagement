@@ -241,7 +241,10 @@ final class BackendController extends Controller
             ->with('attributes/type')
             ->with('attributes/type/l11n')
             ->with('attributes/value')
+            ->with('attributes/value/l11n')
             ->where('id', (int) $request->getData('id'))
+            ->where('attributes/type/l11n/language', $response->header->l11n->language)
+            ->where('attributes/value/l11n/language', [$response->header->l11n->language, null])
             ->execute();
 
         $view->data['attributeView']                               = new \Modules\Attribute\Theme\Backend\Components\AttributeView($this->app->l11nManager, $request, $response);

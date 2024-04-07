@@ -10,6 +10,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentList',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::READ,
@@ -21,6 +22,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentView',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::READ,
@@ -32,6 +34,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentOptionCreate',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::CREATE,
@@ -43,6 +46,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentOptionView',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::CREATE,
@@ -54,6 +58,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentCreate',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::CREATE,
@@ -66,6 +71,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentPrivateList',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::READ,
@@ -77,6 +83,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentPrivateCreate',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::CREATE,
@@ -88,6 +95,7 @@ return [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\BackendController:viewInvestmentView',
             'verb'       => RouteVerb::GET,
+            'active' => true,
             'permission' => [
                 'module' => BackendController::MODULE_NAME,
                 'type'   => PermissionType::READ,
