@@ -53,7 +53,7 @@ echo $this->data['nav']->render(); ?>
 
                             <div class="form-group">
                                 <label for="iInvestmentDescription"><?= $this->getHtml('Description'); ?></label>
-                                <textarea id="iInvestmentDescription" name="description"><?= $this->printHtml($investment->description); ?></textarea>
+                                <textarea id="iInvestmentDescription" name="description"><?= $this->printTextarea($investment->description); ?></textarea>
                             </div>
 
                             <div class="form-group">
@@ -166,7 +166,7 @@ echo $this->data['nav']->render(); ?>
 
                             <div class="form-group">
                                 <label for="iObjectDescription-<?= $count; ?>"><?= $this->getHtml('Description'); ?></label>
-                                <textarea id="iObjectDescription-<?= $count; ?>" name="description" disabled><?= $this->printHtml($option->description); ?></textarea>
+                                <textarea id="iObjectDescription-<?= $count; ?>" name="description" disabled><?= $this->printTextarea($option->description); ?></textarea>
                             </div>
 
                             <div class="form-group">

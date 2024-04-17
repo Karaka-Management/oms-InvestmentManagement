@@ -62,7 +62,7 @@ $isNew = $option->id === 0;
 
                             <div class="form-group">
                                 <label for="iObjectDescription"><?= $this->getHtml('Description'); ?></label>
-                                <textarea id="iObjectDescription" name="description"><?= $this->printHtml($option->description); ?></textarea>
+                                <textarea id="iObjectDescription" name="description"><?= $this->printTextarea($option->description); ?></textarea>
                             </div>
 
                             <div class="form-group">
