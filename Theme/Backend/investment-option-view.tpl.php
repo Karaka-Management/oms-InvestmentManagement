@@ -75,7 +75,7 @@ $isNew = $option->id === 0;
                                 <div class="flex-line wf-100">
                                     <!-- @todo supplier id
                                     <div>
-                                        <input type="text" id="iObjectSupplier" name="supplier" value="<?= $this->printHtml($option->supplier->account->name1); ?>">
+                                        <input type="text" id="iObjectSupplier" name="supplier" value="<?= $this->printHtml($option->supplier?->account?->name1); ?>">
                                     </div>
                                     -->
                                     <div>
@@ -114,6 +114,7 @@ $isNew = $option->id === 0;
             </div>
         </div>
 
+        <?php if (!$isNew) : ?>
         <input type="radio" id="c-tab-2" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-2' ? ' checked' : ''; ?>>
         <div class="tab">
             <div class="row">
@@ -143,5 +144,6 @@ $isNew = $option->id === 0;
         <div class="tab col-simple">
             <?= $this->data['media-upload']->render('option-file', 'files', '', $option->files); ?>
         </div>
+        <?php endif; ?>
     </div>
 </div>
