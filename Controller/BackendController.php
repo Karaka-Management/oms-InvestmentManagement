@@ -119,6 +119,9 @@ final class BackendController extends Controller
      *
      * @return RenderableInterface
      *
+     * @feature Compare different investment options in costs/feasibility
+     *      https://github.com/Karaka-Management/oms-InvestmentManagement/issues/1
+     *
      * @since 1.0.0
      * @codeCoverageIgnore
      */

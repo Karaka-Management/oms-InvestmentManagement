@@ -31,7 +31,7 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/attribute$' => [
+    '^.*/finance/investment/attribute(\?.*|$)$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeCreate',
             'verb'       => RouteVerb::PUT,
@@ -55,7 +55,7 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/attribute/type$' => [
+    '^.*/finance/investment/attribute/type(\?.*|$)$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeTypeCreate',
             'verb'       => RouteVerb::PUT,
@@ -79,7 +79,7 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/attribute/type/l11n$' => [
+    '^.*/finance/investment/attribute/type/l11n(\?.*|$)$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeTypeL11nCreate',
             'verb'       => RouteVerb::PUT,
@@ -103,7 +103,7 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/attribute/value$' => [
+    '^.*/finance/investment/attribute/value(\?.*|$)$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeValueCreate',
             'verb'       => RouteVerb::PUT,
@@ -127,7 +127,7 @@ return [
             ],
         ],
     ],
-    '^.*/finance/investment/attribute/value$' => [
+    '^.*/finance/investment/attribute/value(\?.*|$)$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeValueL11nCreate',
             'verb'       => RouteVerb::PUT,
