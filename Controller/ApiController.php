@@ -175,7 +175,7 @@ final class ApiController extends Controller
         }
 
         /** @var \Modules\InvestmentManagement\Models\Investment $investment */
-        $investment = InvestmentMapper::get()->where('id', (int) $request->getData('investment'))->execute();
+        $investment = InvestmentMapper::get()->where('id', (int) $request->getData('ref'))->execute();
         $path       = $this->createInvestmentDir($investment);
 
         $uploaded = new NullCollection();
@@ -227,7 +227,7 @@ final class ApiController extends Controller
     {
         $val = [];
         if (($val['media'] = (!$request->hasData('media') && empty($request->files)))
-            || ($val['investment'] = !$request->hasData('investment'))
+            || ($val['ref'] = !$request->hasData('ref'))
         ) {
             return $val;
         }
@@ -505,7 +505,7 @@ final class ApiController extends Controller
         }
 
         /** @var \Modules\InvestmentManagement\Models\InvestmentObject $investment */
-        $investment = InvestmentObjectMapper::get()->where('id', (int) $request->getData('option'))->execute();
+        $investment = InvestmentObjectMapper::get()->where('id', (int) $request->getData('ref'))->execute();
         $path       = $this->createInvestmentObjectDir($investment);
 
         $uploaded = new NullCollection();
@@ -557,7 +557,7 @@ final class ApiController extends Controller
     {
         $val = [];
         if (($val['media'] = (!$request->hasData('media') && empty($request->files)))
-            || ($val['investment'] = !$request->hasData('investment'))
+            || ($val['ref'] = !$request->hasData('ref'))
         ) {
             return $val;
         }
@@ -579,7 +579,7 @@ final class ApiController extends Controller
         $type        = new BaseStringL11nType();
         $type->title = $request->getDataString('name') ?? '';
         $type->setL11n(
-            $request->getDataString('title') ?? '',
+            $request->getDataString('content') ?? '',
             ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? ISO639x1Enum::_EN
         );
 
@@ -599,7 +599,7 @@ final class ApiController extends Controller
     {
         $val = [];
         if (($val['name'] = !$request->hasData('name'))
-            || ($val['title'] = !$request->hasData('title'))
+            || ($val['content'] = !$request->hasData('content'))
         ) {
             return $val;
         }
@@ -646,9 +646,9 @@ final class ApiController extends Controller
     private function createAmountTypeL11nFromRequest(RequestAbstract $request) : BaseStringL11n
     {
         $typeL11n           = new BaseStringL11n();
-        $typeL11n->ref      = $request->getDataInt('type') ?? 0;
+        $typeL11n->ref      = $request->getDataInt('ref') ?? 0;
         $typeL11n->language = ISO639x1Enum::tryFromValue($request->getDataString('language')) ?? $request->header->l11n->language;
-        $typeL11n->content  = $request->getDataString('title') ?? '';
+        $typeL11n->content  = $request->getDataString('content') ?? '';
 
         return $typeL11n;
     }
@@ -665,8 +665,8 @@ final class ApiController extends Controller
     private function validateAmountTypeL11nCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['title'] = !$request->hasData('title'))
-            || ($val['type'] = !$request->hasData('type'))
+        if (($val['content'] = !$request->hasData('content'))
+            || ($val['ref'] = !$request->hasData('ref'))
         ) {
             return $val;
         }
@@ -696,7 +696,7 @@ final class ApiController extends Controller
             return;
         }
 
-        $request->setData('virtualpath', '/Modules/InvestmentManagement/Investment/' . $request->getData('id'), true);
+        $request->setData('virtualpath', '/Modules/InvestmentManagement/Investment/' . $request->getData('ref'), true);
         $this->app->moduleManager->get('Editor', 'Api')->apiEditorCreate($request, $response, $data);
 
         if ($response->header->status !== RequestStatusCode::R_200) {
@@ -709,7 +709,7 @@ final class ApiController extends Controller
         }
 
         $model = $responseData['response'];
-        $this->createModelRelation($request->header->account, (int) $request->getData('id'), $model->id, InvestmentMapper::class, 'notes', '', $request->getOrigin());
+        $this->createModelRelation($request->header->account, (int) $request->getData('ref'), $model->id, InvestmentMapper::class, 'notes', '', $request->getOrigin());
     }
 
     /**
@@ -724,7 +724,7 @@ final class ApiController extends Controller
     private function validateNoteCreate(RequestAbstract $request) : array
     {
         $val = [];
-        if (($val['id'] = !$request->hasData('id'))
+        if (($val['ref'] = !$request->hasData('ref'))
         ) {
             return $val;
         }

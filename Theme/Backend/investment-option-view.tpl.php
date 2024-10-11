@@ -137,12 +137,12 @@ $isNew = $option->id === 0;
 
         <input type="radio" id="c-tab-4" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-4' ? ' checked' : ''; ?>>
         <div class="tab col-simple">
-            <?= $this->data['note']->render('option-note', 'notes', $option->notes); ?>
+            <?= $this->data['note']->render('option-note', 'notes', $option->notes, '{/api}finance/investment/option/note?csrf={$CSRF}', (string) $option->id); ?>
         </div>
 
         <input type="radio" id="c-tab-5" name="tabular-2"<?= $this->request->uri->fragment === 'c-tab-5' ? ' checked' : ''; ?>>
         <div class="tab col-simple">
-            <?= $this->data['media-upload']->render('option-file', 'files', '', $option->files); ?>
+            <?= $this->data['media-upload']->render('option-file', 'files', '', $option->files, '{/api}finance/investment/option/file?csrf={$CSRF}', (string) $option->id); ?>
         </div>
         <?php endif; ?>
     </div>

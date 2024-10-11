@@ -31,6 +31,107 @@ return [
             ],
         ],
     ],
+
+    '^.*/finance/investment(\?.*$|$)' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiInvestmentCreate',
+            'verb'       => RouteVerb::PUT,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiInvestmentUpdate',
+            'verb'       => RouteVerb::SET,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::MODIFY,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
+
+    '^.*/finance/investment/option(\?.*$|$)' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiInvestmentOptionCreate',
+            'verb'       => RouteVerb::PUT,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiInvestmentOptionUpdate',
+            'verb'       => RouteVerb::SET,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::MODIFY,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
+
+    '^.*/finance/investment/option/file(\?.*|$)$' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiMediaAddToInvestmentObject',
+            'verb'       => RouteVerb::PUT,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
+
+    '^.*/finance/investment/option/note(\?.*|$)$' => [
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiNoteCreate',
+            'verb'       => RouteVerb::PUT,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::CREATE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiNoteUpdate',
+            'verb'       => RouteVerb::SET,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::MODIFY,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+        [
+            'dest'       => '\Modules\InvestmentManagement\Controller\ApiController:apiNoteDelete',
+            'verb'       => RouteVerb::DELETE,
+            'csrf'       => true,
+            'active'     => true,
+            'permission' => [
+                'module' => ApiController::NAME,
+                'type'   => PermissionType::DELETE,
+                'state'  => PermissionCategory::INVESTMENT,
+            ],
+        ],
+    ],
+
     '^.*/finance/investment/attribute(\?.*|$)$' => [
         [
             'dest'       => '\Modules\InvestmentManagement\Controller\ApiAttributeController:apiInvestmentAttributeCreate',
