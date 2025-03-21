@@ -19,7 +19,8 @@
     "dependencies": {
         "Finance": "*",
         "SupplierManagement": "*",
-        "ItemManagement": "*"
+        "ItemManagement": "*",
+        "Workflow": "*"
     },
     "providing": {
         "Navigation": "*"

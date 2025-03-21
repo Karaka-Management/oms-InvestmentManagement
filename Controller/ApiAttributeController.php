@@ -243,7 +243,7 @@ final class ApiAttributeController extends Controller
             ->with('type')
             ->with('type/defaults')
             ->with('value')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->execute();
 
         $new = $this->updateAttributeFromRequest($request, clone $old);
@@ -291,7 +291,7 @@ final class ApiAttributeController extends Controller
 
         $optionAttribute = InvestmentObjectAttributeMapper::get()
             ->with('type')
-            ->where('id', (int) $request->getData('id'))
+            ->where('id', $request->getDataInt('id') ?? 0)
             ->execute();
 
         if ($optionAttribute->type->isRequired) {
@@ -327,7 +327,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var BaseStringL11n $old */
-        $old = InvestmentObjectAttributeTypeL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $old = InvestmentObjectAttributeTypeL11nMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $new = $this->updateAttributeTypeL11nFromRequest($request, clone $old);
 
         $this->updateModel($request->header->account, $old, $new, InvestmentObjectAttributeTypeL11nMapper::class, 'option_attribute_type_l11n', $request->getOrigin());
@@ -357,7 +357,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var BaseStringL11n $optionAttributeTypeL11n */
-        $optionAttributeTypeL11n = InvestmentObjectAttributeTypeL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $optionAttributeTypeL11n = InvestmentObjectAttributeTypeL11nMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->deleteModel($request->header->account, $optionAttributeTypeL11n, InvestmentObjectAttributeTypeL11nMapper::class, 'option_attribute_type_l11n', $request->getOrigin());
         $this->createStandardDeleteResponse($request, $response, $optionAttributeTypeL11n);
     }
@@ -385,7 +385,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var AttributeType $old */
-        $old = InvestmentObjectAttributeTypeMapper::get()->with('defaults')->where('id', (int) $request->getData('id'))->execute();
+        $old = InvestmentObjectAttributeTypeMapper::get()->with('defaults')->where('id', $request->getDataInt('id') ?? 0)->execute();
         $new = $this->updateAttributeTypeFromRequest($request, clone $old);
 
         $this->updateModel($request->header->account, $old, $new, InvestmentObjectAttributeTypeMapper::class, 'option_attribute_type', $request->getOrigin());
@@ -417,7 +417,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var AttributeType $optionAttributeType */
-        $optionAttributeType = InvestmentObjectAttributeTypeMapper::get()->with('defaults')->where('id', (int) $request->getData('id'))->execute();
+        $optionAttributeType = InvestmentObjectAttributeTypeMapper::get()->with('defaults')->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->deleteModel($request->header->account, $optionAttributeType, InvestmentObjectAttributeTypeMapper::class, 'option_attribute_type', $request->getOrigin());
         $this->createStandardDeleteResponse($request, $response, $optionAttributeType);
     }
@@ -445,7 +445,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var AttributeValue $old */
-        $old = InvestmentObjectAttributeValueMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $old = InvestmentObjectAttributeValueMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
 
         /** @var \Modules\Attribute\Models\Attribute $attr */
         $attr = InvestmentObjectAttributeMapper::get()
@@ -485,7 +485,7 @@ final class ApiAttributeController extends Controller
         // }
 
         // /** @var \Modules\InvestmentManagement\Models\InvestmentObjectAttributeValue $optionAttributeValue */
-        // $optionAttributeValue = InvestmentObjectAttributeValueMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        // $optionAttributeValue = InvestmentObjectAttributeValueMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         // $this->deleteModel($request->header->account, $optionAttributeValue, InvestmentObjectAttributeValueMapper::class, 'option_attribute_value', $request->getOrigin());
         // $this->createStandardDeleteResponse($request, $response, $optionAttributeValue);
     }
@@ -513,7 +513,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var BaseStringL11n $old */
-        $old = InvestmentObjectAttributeValueL11nMapper::get()->where('id', (int) $request->getData('id'));
+        $old = InvestmentObjectAttributeValueL11nMapper::get()->where('id', $request->getDataInt('id') ?? 0);
         $new = $this->updateAttributeValueL11nFromRequest($request, clone $old);
 
         $this->updateModel($request->header->account, $old, $new, InvestmentObjectAttributeValueL11nMapper::class, 'option_attribute_value_l11n', $request->getOrigin());
@@ -543,7 +543,7 @@ final class ApiAttributeController extends Controller
         }
 
         /** @var BaseStringL11n $optionAttributeValueL11n */
-        $optionAttributeValueL11n = InvestmentObjectAttributeValueL11nMapper::get()->where('id', (int) $request->getData('id'))->execute();
+        $optionAttributeValueL11n = InvestmentObjectAttributeValueL11nMapper::get()->where('id', $request->getDataInt('id') ?? 0)->execute();
         $this->deleteModel($request->header->account, $optionAttributeValueL11n, InvestmentObjectAttributeValueL11nMapper::class, 'option_attribute_value_l11n', $request->getOrigin());
         $this->createStandardDeleteResponse($request, $response, $optionAttributeValueL11n);
     }
